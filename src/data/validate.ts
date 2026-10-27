@@ -1,6 +1,8 @@
 import { BUNDLES, DOCS } from './index';
 import { passages } from '../lib/format';
-import type { Ref } from './types';
+import type { Ref, Txt } from './types';
+
+const nm = (x: Txt) => (typeof x === 'string' ? x : x.en);
 
 /**
  * Checks that every citation in the app points at a document that exists, belongs to the
@@ -44,16 +46,22 @@ export function validateData(): string[] {
     };
 
     p.reason.refs.forEach((r) => check('reason', r));
-    p.measures.forEach((m) => check(`measure ${m.label}`, m.ref));
+    p.measures.forEach((m) => check(`measure ${nm(m.label)}`, m.ref));
     p.summary.forEach((s, i) => s.refs.forEach((r) => check(`summary ${i + 1}`, r)));
     p.flags.forEach((s, i) => s.refs.forEach((r) => check(`flag ${i + 1}`, r)));
     p.visits.forEach((v) => check(`visit ${v.date}`, v.ref));
-    p.tests.forEach((t) => check(`test ${t.name}`, t.ref));
+    p.qa.forEach((q, i) => {
+      if (!q.q.nl || !q.q.en || !q.a.nl || !q.a.en) problems.push(`${p.id} qa ${i + 1}: missing a translation`);
+    });
+    p.summary.forEach((s, i) => {
+      if (!s.t.nl || !s.t.en) problems.push(`${p.id} summary ${i + 1}: missing a translation`);
+    });
+    p.tests.forEach((t) => check(`test ${nm(t.name)}`, t.ref));
     p.qa.forEach((q, i) => q.refs.forEach((r) => check(`qa ${i + 1}`, r)));
     check('meds', p.meds.ref);
     p.risk.forEach((r) => {
-      check(`risk ${r.kind}`, r.ref);
-      if (!r.ref.at) problems.push(`${p.id} risk ${r.kind}: a risk quote must cite a passage`);
+      check(`risk ${r.kind.en}`, r.ref);
+      if (!r.ref.at) problems.push(`${p.id} risk ${r.kind.en}: a risk quote must cite a passage`);
     });
     if (p.risk.length === 0 && !p.riskGap) problems.push(`${p.id}: no risk entries and no risk gap shown`);
     p.summary.forEach((s, i) => {

@@ -4,7 +4,8 @@ import { DOCS } from '../data';
 import { DocumentBody } from './DocumentBody';
 import { LangToggle } from './LangToggle';
 import { CloseIcon } from './Icons';
-import { shortDate } from '../lib/format';
+import { mediumDate } from '../lib/format';
+import { STRINGS } from '../i18n';
 
 export function DocDrawer({
   source,
@@ -20,6 +21,7 @@ export function DocDrawer({
   onClose: () => void;
 }) {
   const doc = DOCS[source.doc];
+  const S = STRINGS[lang];
   const closeRef = useRef<HTMLButtonElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -57,25 +59,28 @@ export function DocDrawer({
         className="drawer"
         role="dialog"
         aria-modal="true"
-        aria-label={`${doc.type[lang]}, ${shortDate(doc.date, lang)}`}
+        aria-label={`${doc.type[lang]}, ${mediumDate(doc.date, lang)}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="drawer-bar">
           <div className="drawer-title">
-            <div className="drawer-kicker">Source document</div>
+            <div className="drawer-kicker">{S.sourceDoc}</div>
             <div className="drawer-name">
-              {doc.type[lang]} · {shortDate(doc.date, lang)}
+              {doc.type[lang]} · {mediumDate(doc.date, lang)}
             </div>
           </div>
           <LangToggle lang={lang} setLang={setLang} />
-          <button ref={closeRef} type="button" className="icon-btn" onClick={onClose} aria-label="Close source document">
+          <button ref={closeRef} type="button" className="icon-btn" onClick={onClose} aria-label={S.closeDoc}>
             <CloseIcon />
           </button>
         </div>
         {source.at ? (
-          <div className="drawer-note">The cited passage is highlighted.{lang === 'en' ? ' English translation of the Dutch original.' : ''}</div>
+          <div className="drawer-note">
+            {S.citedHighlighted}
+            {lang === 'en' ? ` ${S.translated}` : ''}
+          </div>
         ) : lang === 'en' ? (
-          <div className="drawer-note">English translation of the Dutch original.</div>
+          <div className="drawer-note">{S.translated}</div>
         ) : null}
         <div className="drawer-scroll" ref={scrollRef}>
           <DocumentBody doc={doc} patient={patient} lang={lang} highlight={source.at} />

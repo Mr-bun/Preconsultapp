@@ -12,40 +12,59 @@ export const elAmrani: PatientBundle = {
     dob: '1984-09-08',
     mrn: 'SYN-03562',
     address: 'Zonnebloemlaan 8, 3531 ZZ Utrecht',
-    specialty: 'Psychiatry',
-    visitType: 'Intake',
+    specialty: { nl: 'Psychiatrie', en: 'Psychiatry' },
+    visitType: { nl: 'Intake', en: 'Intake' },
     time: '10:40',
-    slot: 'Tue 3 Nov 2026 · 10:40',
-    allergies: 'None known',
+    durationMin: 45,
+    allergies: { nl: 'Geen bekend', en: 'None known' },
     reason: {
-      t: 'Diagnostic assessment and trauma-focused treatment after a road traffic collision. The GP also asks for advice on reducing her long-term use of a sleeping tablet.',
+      t: {
+        nl: 'Diagnostiek en traumagerichte behandeling na een verkeersongeval. De huisarts vraagt ook advies over het afbouwen van haar langdurige gebruik van een slaapmiddel.',
+        en: 'Diagnostic assessment and trauma-focused treatment after a road traffic collision. The GP also asks for advice on reducing her long-term use of a sleeping tablet.',
+      },
       refs: [{ doc: 'p3-ref', at: 'reason' }],
     },
     measures: [
-      { label: 'PCL-5', value: '52', date: '1 Oct 2026', ref: { doc: 'p3-ref', at: 'pcl' } },
-      { label: 'PHQ-9', value: '11', date: '1 Oct 2026', ref: { doc: 'p3-ref', at: 'phq' } },
-      { label: 'Insomnia (ISI)', value: '21', date: '1 Oct 2026', ref: { doc: 'p3-ref', at: 'isi' } },
+      { label: 'PCL-5', value: '52', date: '2026-10-01', ref: { doc: 'p3-ref', at: 'pcl' } },
+      { label: 'PHQ-9', value: '11', date: '2026-10-01', ref: { doc: 'p3-ref', at: 'phq' } },
+      { label: { nl: 'Slapeloosheid (ISI)', en: 'Insomnia (ISI)' }, value: '21', date: '2026-10-01', ref: { doc: 'p3-ref', at: 'isi' } },
     ],
-    conditions: ['Post-traumatic stress symptoms (2025)', 'Insomnia', 'Whiplash injury, resolved'],
+    conditions: [
+      { nl: 'Posttraumatische stressklachten (2025)', en: 'Post-traumatic stress symptoms (2025)' },
+      { nl: 'Slapeloosheid', en: 'Insomnia' },
+      { nl: 'Whiplash-letsel, hersteld', en: 'Whiplash injury, resolved' },
+    ],
     summary: [
       {
-        t: 'Road traffic collision on 17 Aug 2025 as the driver; whiplash injury, since resolved.',
+        t: { nl: 'Verkeersongeval op 17 aug 2025 als bestuurder; whiplash-letsel, inmiddels hersteld.', en: 'Road traffic collision on 17 Aug 2025 as the driver; whiplash injury, since resolved.' },
         refs: [
           { doc: 'p3-seh', at: 'hx' },
           { doc: 'p3-seh', at: 'dx' },
         ],
       },
-      { t: 'Since the collision: nightmares, avoidance of driving, and feeling constantly on guard.', refs: [{ doc: 'p3-ref', at: 'hx' }] },
-      { t: 'PCL-5 score 52 on 1 Oct 2026.', refs: [{ doc: 'p3-ref', at: 'pcl' }] },
       {
-        t: 'Paroxetine 20 mg since January 2026; the GP notes better mood but no change in sleep.',
+        t: {
+          nl: 'Sinds het ongeval: nachtmerries, vermijden van autorijden en zich voortdurend op haar hoede voelen.',
+          en: 'Since the collision: nightmares, avoidance of driving, and feeling constantly on guard.',
+        },
+        refs: [{ doc: 'p3-ref', at: 'hx' }],
+      },
+      { t: { nl: 'PCL-5-score 52 op 1 okt 2026.', en: 'PCL-5 score 52 on 1 Oct 2026.' }, refs: [{ doc: 'p3-ref', at: 'pcl' }] },
+      {
+        t: {
+          nl: 'Paroxetine 20 mg sinds januari 2026; de huisarts ziet een betere stemming maar geen verandering in de slaap.',
+          en: 'Paroxetine 20 mg since January 2026; the GP notes better mood but no change in sleep.',
+        },
         refs: [
           { doc: 'p3-gp', at: 'p' },
           { doc: 'p3-ref', at: 'course' },
         ],
       },
       {
-        t: 'Zolpidem 10 mg nightly since January 2026, first given as a 7-night course after the collision. Two attempts to stop were unsuccessful.',
+        t: {
+          nl: 'Zolpidem 10 mg elke nacht sinds januari 2026, eerst voorgeschreven als kuur van 7 nachten na het ongeval. Twee pogingen om te stoppen mislukten.',
+          en: 'Zolpidem 10 mg nightly since January 2026, first given as a 7-night course after the collision. Two attempts to stop were unsuccessful.',
+        },
         refs: [
           { doc: 'p3-meds', at: 'zol' },
           { doc: 'p3-seh', at: 'plan' },
@@ -54,57 +73,101 @@ export const elAmrani: PatientBundle = {
       },
     ],
     risk: [],
-    riskGap: 'No suicide or self-harm risk screen is recorded in any document.',
+    riskGap: {
+      nl: 'In geen enkel document is een screening op suïcide- of zelfbeschadigingsrisico vastgelegd.',
+      en: 'No suicide or self-harm risk screen is recorded in any document.',
+    },
     flags: [
       {
-        t: 'No psychotherapy recorded. The referral says she was on a psychologist waiting list in spring 2026; it is not known whether treatment started.',
+        t: {
+          nl: 'Geen psychotherapie vastgelegd. Volgens de verwijzing stond zij in het voorjaar van 2026 op een wachtlijst bij een psycholoog; onbekend of de behandeling is gestart.',
+          en: 'No psychotherapy recorded. The referral says she was on a psychologist waiting list in spring 2026; it is not known whether treatment started.',
+        },
         refs: [{ doc: 'p3-ref', at: 'psy' }],
       },
-      { t: 'Her stated goal is to drive to work again.', refs: [{ doc: 'p3-ref', at: 'goal' }] },
-      { t: 'PHQ-9 fell from 15 (Jan 2026) to 11 (Oct 2026).', refs: [{ doc: 'p3-gp', at: 'o' }, { doc: 'p3-ref', at: 'phq' }] },
+      { t: { nl: 'Haar eigen doel is weer zelf naar haar werk te rijden.', en: 'Her stated goal is to drive to work again.' }, refs: [{ doc: 'p3-ref', at: 'goal' }] },
+      {
+        t: { nl: 'PHQ-9 gedaald van 15 (jan 2026) naar 11 (okt 2026).', en: 'PHQ-9 fell from 15 (Jan 2026) to 11 (Oct 2026).' },
+        refs: [
+          { doc: 'p3-gp', at: 'o' },
+          { doc: 'p3-ref', at: 'phq' },
+        ],
+      },
     ],
     visits: [
-      { date: '1 Oct 2026', who: 'GP', reason: 'Persistent nightmares, fear of driving', action: 'Questionnaires completed; referral to psychiatry', ref: { doc: 'p3-ref' } },
-      { date: '20 Jan 2026', who: 'GP', reason: 'Low mood and poor sleep', action: 'Paroxetine 20 mg started; zolpidem restarted; bloods', ref: { doc: 'p3-gp' } },
-      { date: '17 Aug 2025', who: 'Emergency dept.', reason: 'Road traffic collision', action: 'Whiplash; discharged with physiotherapy referral and 7 nights of zolpidem', ref: { doc: 'p3-seh' } },
+      {
+        date: '2026-10-01',
+        who: { nl: 'Huisarts', en: 'GP' },
+        reason: { nl: 'Aanhoudende nachtmerries, angst om auto te rijden', en: 'Persistent nightmares, fear of driving' },
+        action: { nl: 'Vragenlijsten afgenomen; verwijzing psychiatrie', en: 'Questionnaires completed; referral to psychiatry' },
+        ref: { doc: 'p3-ref' },
+      },
+      {
+        date: '2026-01-20',
+        who: { nl: 'Huisarts', en: 'GP' },
+        reason: { nl: 'Sombere stemming en slecht slapen', en: 'Low mood and poor sleep' },
+        action: { nl: 'Paroxetine 20 mg gestart; zolpidem herstart; lab', en: 'Paroxetine 20 mg started; zolpidem restarted; bloods' },
+        ref: { doc: 'p3-gp' },
+      },
+      {
+        date: '2025-08-17',
+        who: { nl: 'Spoedeisende Hulp', en: 'Emergency dept.' },
+        reason: { nl: 'Verkeersongeval', en: 'Road traffic collision' },
+        action: { nl: 'Whiplash; ontslag met verwijzing fysiotherapie en 7 nachten zolpidem', en: 'Whiplash; discharged with physiotherapy referral and 7 nights of zolpidem' },
+        ref: { doc: 'p3-seh' },
+      },
     ],
     meds: {
       current: [
-        { name: 'Paroxetine', dose: '20 mg OD' },
-        { name: 'Zolpidem', dose: '10 mg nocte' },
+        { name: { nl: 'Paroxetine', en: 'Paroxetine' }, dose: { nl: '20 mg 1 dd', en: '20 mg OD' } },
+        { name: { nl: 'Zolpidem', en: 'Zolpidem' }, dose: { nl: '10 mg voor de nacht', en: '10 mg nocte' } },
       ],
       past: [
-        { name: 'Tramadol 50 mg PRN', when: 'Aug to Sep 2025', why: 'pain resolved' },
-        { name: 'Zolpidem 10 mg, 7 nights', when: 'Aug 2025', why: 'course completed' },
+        { name: { nl: 'Tramadol 50 mg z.n.', en: 'Tramadol 50 mg PRN' }, when: { nl: 'aug tot sep 2025', en: 'Aug to Sep 2025' }, why: { nl: 'pijn verdwenen', en: 'pain resolved' } },
+        { name: { nl: 'Zolpidem 10 mg, 7 nachten', en: 'Zolpidem 10 mg, 7 nights' }, when: { nl: 'aug 2025', en: 'Aug 2025' }, why: { nl: 'kuur afgerond', en: 'course completed' } },
       ],
       ref: { doc: 'p3-meds' },
     },
     tests: [
-      { name: 'PCL-5', value: '52', range: '< 33', date: '1 Oct 2026', status: 'high', ref: { doc: 'p3-ref', at: 'pcl' } },
-      { name: 'PHQ-9', value: '11', range: '< 5', date: '1 Oct 2026', status: 'high', ref: { doc: 'p3-ref', at: 'phq' } },
-      { name: 'Insomnia Severity Index', value: '21', range: '< 8', date: '1 Oct 2026', status: 'high', ref: { doc: 'p3-ref', at: 'isi' } },
-      { name: 'AUDIT-C', value: '2', range: '< 4', date: '1 Oct 2026', status: 'normal', ref: { doc: 'p3-ref', at: 'audit' } },
-      { name: 'TSH', value: '2.4 mU/L', range: '0.4 to 4.0', date: '20 Jan 2026', status: 'normal', ref: { doc: 'p3-lab', at: 'tsh' } },
+      { name: 'PCL-5', value: '52', range: '< 33', date: '2026-10-01', status: 'high', ref: { doc: 'p3-ref', at: 'pcl' } },
+      { name: 'PHQ-9', value: '11', range: '< 5', date: '2026-10-01', status: 'high', ref: { doc: 'p3-ref', at: 'phq' } },
+      { name: 'Insomnia Severity Index', value: '21', range: '< 8', date: '2026-10-01', status: 'high', ref: { doc: 'p3-ref', at: 'isi' } },
+      { name: 'AUDIT-C', value: '2', range: '< 4', date: '2026-10-01', status: 'normal', ref: { doc: 'p3-ref', at: 'audit' } },
+      { name: 'TSH', value: '2.4 mU/L', range: '0.4 to 4.0', date: '2026-01-20', status: 'normal', ref: { doc: 'p3-lab', at: 'tsh' } },
     ],
-    gaps: ['Suicide and self-harm risk screen', 'Earlier trauma history', 'Work situation and sick leave status', 'Outcome of the psychologist waiting list'],
+    gaps: [
+      { nl: 'Screening op suïcide- en zelfbeschadigingsrisico', en: 'Suicide and self-harm risk screen' },
+      { nl: 'Eerdere traumageschiedenis', en: 'Earlier trauma history' },
+      { nl: 'Werksituatie en verzuim', en: 'Work situation and sick leave status' },
+      { nl: 'Uitkomst van de wachtlijst bij de psycholoog', en: 'Outcome of the psychologist waiting list' },
+    ],
     qa: [
       {
-        q: 'What happened in the collision?',
-        a: 'She was the driver; another car hit hers from the side at a junction. Seatbelt worn, airbags deployed, no loss of consciousness. Whiplash injury. Discharged the same day with a physiotherapy referral and 7 nights of zolpidem.',
+        q: { nl: 'Wat is er gebeurd bij het ongeval?', en: 'What happened in the collision?' },
+        a: {
+          nl: 'Zij was bestuurder; een andere auto reed op een kruising van opzij tegen haar auto. Gordel om, airbags afgegaan, geen bewustzijnsverlies. Whiplash-letsel. Dezelfde dag ontslagen met een verwijzing naar de fysiotherapeut en 7 nachten zolpidem.',
+          en: 'She was the driver; another car hit hers from the side at a junction. Seatbelt worn, airbags deployed, no loss of consciousness. Whiplash injury. Discharged the same day with a physiotherapy referral and 7 nights of zolpidem.',
+        },
         refs: [
           { doc: 'p3-seh', at: 'hx' },
           { doc: 'p3-seh', at: 'plan' },
         ],
       },
       {
-        q: 'Has she had any psychotherapy?',
-        a: 'No psychotherapy is recorded. The GP referral says she was on a psychologist waiting list in spring 2026; the GP does not know whether treatment started.',
+        q: { nl: 'Heeft zij psychotherapie gehad?', en: 'Has she had any psychotherapy?' },
+        a: {
+          nl: 'Er is geen psychotherapie vastgelegd. Volgens de verwijsbrief stond zij in het voorjaar van 2026 op de wachtlijst bij een psycholoog; de huisarts weet niet of de behandeling is gestart.',
+          en: 'No psychotherapy is recorded. The GP referral says she was on a psychologist waiting list in spring 2026; the GP does not know whether treatment started.',
+        },
         refs: [{ doc: 'p3-ref', at: 'psy' }],
       },
       {
-        q: 'Which therapy should I offer first?',
+        q: { nl: 'Welke therapie moet ik als eerste aanbieden?', en: 'Which therapy should I offer first?' },
         out: true,
-        a: 'PreConsult summarizes the record and does not advise on treatment.\n\nRelevant entries: PCL-5 52; no psychotherapy recorded; her stated goal is to drive to work again.',
+        a: {
+          nl: 'PreConsult vat het dossier samen en geeft geen behandeladvies.\n\nRelevante gegevens: PCL-5 52; geen psychotherapie vastgelegd; haar eigen doel is weer zelf naar haar werk te rijden.',
+          en: 'PreConsult summarizes the record and does not advise on treatment.\n\nRelevant entries: PCL-5 52; no psychotherapy recorded; her stated goal is to drive to work again.',
+        },
         refs: [
           { doc: 'p3-ref', at: 'pcl' },
           { doc: 'p3-ref', at: 'psy' },

@@ -56,9 +56,12 @@ export interface SourceDoc {
 }
 
 export interface Stmt {
-  t: string;
+  t: T;
   refs: Ref[];
 }
+
+/** Plain strings are language-neutral values (numbers, codes); the UI localizes decimals for Dutch. */
+export type Txt = string | T;
 
 export interface Patient {
   id: string;
@@ -66,38 +69,40 @@ export interface Patient {
   surname: string;
   initials: string;
   sex: 'F' | 'M';
+  /** ISO date of birth */
   dob: string;
   mrn: string;
   address: string;
-  specialty: string;
-  visitType: string;
+  specialty: T;
+  visitType: T;
+  /** Appointment start time today, HH:MM. The schedule is always dated to the day it is viewed. */
   time: string;
-  slot: string;
-  allergies: string;
+  durationMin: number;
+  allergies: T;
   reason: Stmt;
-  measures: { label: string; value: string; date: string; ref: Ref }[];
-  conditions: string[];
+  measures: { label: Txt; value: Txt; date: string; ref: Ref }[];
+  conditions: T[];
   summary: Stmt[];
   /** Risk items carry no text of their own: the quote is read from the cited passage, so it is always verbatim. */
-  risk: { who: string; kind: string; ref: Ref }[];
-  riskGap?: string;
+  risk: { who: T; kind: T; ref: Ref }[];
+  riskGap?: T;
   flags: Stmt[];
-  visits: { date: string; who: string; reason: string; action: string; ref: Ref }[];
+  visits: { date: string; who: T; reason: T; action: T; ref: Ref }[];
   meds: {
-    current: { name: string; dose: string }[];
-    past: { name: string; when: string; why: string }[];
+    current: { name: T; dose: T }[];
+    past: { name: T; when: T; why: T }[];
     ref: Ref;
   };
   tests: {
-    name: string;
-    value: string;
-    range: string;
+    name: Txt;
+    value: Txt;
+    range: Txt;
     date: string;
     status: 'normal' | 'high' | 'low' | 'abnormal';
     ref: Ref;
   }[];
-  gaps: string[];
-  qa: { q: string; a: string; refs: Ref[]; out?: boolean }[];
+  gaps: T[];
+  qa: { q: T; a: T; refs: Ref[]; out?: boolean }[];
 }
 
 export interface PatientBundle {

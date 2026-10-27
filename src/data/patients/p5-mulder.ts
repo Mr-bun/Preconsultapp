@@ -12,85 +12,164 @@ export const mulder: PatientBundle = {
     dob: '2001-12-03',
     mrn: 'SYN-04012',
     address: 'Kanaalweg 66, 3526 ZZ Utrecht',
-    specialty: 'Early psychosis',
-    visitType: 'Medication review',
+    specialty: { nl: 'Vroege psychose', en: 'Early psychosis' },
+    visitType: { nl: 'Medicatie-evaluatie', en: 'Medication review' },
     time: '13:30',
-    slot: 'Tue 3 Nov 2026 · 13:30',
-    allergies: 'None known',
+    durationMin: 45,
+    allergies: { nl: 'Geen bekend', en: 'None known' },
     reason: {
-      t: 'Scheduled three-monthly medication review with the early intervention psychosis team.',
+      t: {
+        nl: 'Geplande driemaandelijkse medicatie-evaluatie met het FACT-team Vroege Psychose.',
+        en: 'Scheduled three-monthly medication review with the early intervention psychosis team.',
+      },
       refs: [{ doc: 'p5-review', at: 'p' }],
     },
     measures: [
-      { label: 'Weight', value: '78 kg (+3)', date: '22 Jul 2026', ref: { doc: 'p5-review', at: 'se' } },
-      { label: 'QTc', value: '418 ms', date: '15 Jul 2026', ref: { doc: 'p5-lab', at: 'qtc' } },
-      { label: 'Urine drug screen', value: 'THC positive', date: '15 Jul 2026', ref: { doc: 'p5-lab', at: 'uds' } },
+      { label: { nl: 'Gewicht', en: 'Weight' }, value: '78 kg (+3)', date: '2026-07-22', ref: { doc: 'p5-review', at: 'se' } },
+      { label: 'QTc', value: '418 ms', date: '2026-07-15', ref: { doc: 'p5-lab', at: 'qtc' } },
+      { label: { nl: 'Urine drugsscreening', en: 'Urine drug screen' }, value: { nl: 'THC positief', en: 'THC positive' }, date: '2026-07-15', ref: { doc: 'p5-lab', at: 'uds' } },
     ],
-    conditions: ['First episode of psychosis (Mar 2026)', 'Cannabis use disorder', 'Student, on study leave'],
+    conditions: [
+      { nl: 'Eerste psychose (mrt 2026)', en: 'First episode of psychosis (Mar 2026)' },
+      { nl: 'Stoornis in cannabisgebruik', en: 'Cannabis use disorder' },
+      { nl: 'Student, studie onderbroken', en: 'Student, on study leave' },
+    ],
     summary: [
       {
-        t: 'First episode of psychosis in March 2026; admitted for three weeks (18 Mar to 9 Apr).',
+        t: {
+          nl: 'Eerste psychotische episode in maart 2026; drie weken opgenomen (18 mrt tot 9 apr).',
+          en: 'First episode of psychosis in March 2026; admitted for three weeks (18 Mar to 9 Apr).',
+        },
         refs: [
           { doc: 'p5-dis', at: 'dx' },
           { doc: 'p5-dis', at: 'course' },
         ],
       },
       {
-        t: 'Aripiprazole since March 2026; increased from 10 to 15 mg on 22 Jul 2026 for remaining suspiciousness.',
+        t: {
+          nl: 'Aripiprazol sinds maart 2026; op 22 jul 2026 verhoogd van 10 naar 15 mg wegens resterende achterdocht.',
+          en: 'Aripiprazole since March 2026; increased from 10 to 15 mg on 22 Jul 2026 for remaining suspiciousness.',
+        },
         refs: [
           { doc: 'p5-dis', at: 'meds' },
           { doc: 'p5-review', at: 'p' },
         ],
       },
-      { t: 'Hallucinations and delusions in remission at the July review; some residual suspiciousness.', refs: [{ doc: 'p5-review', at: 'e' }] },
       {
-        t: 'Reports daily cannabis use; urine drug screen positive for THC.',
+        t: {
+          nl: 'Hallucinaties en wanen in remissie bij de evaluatie in juli; nog enige achterdocht.',
+          en: 'Hallucinations and delusions in remission at the July review; some residual suspiciousness.',
+        },
+        refs: [{ doc: 'p5-review', at: 'e' }],
+      },
+      {
+        t: { nl: 'Meldt dagelijks cannabisgebruik; urine drugsscreening positief op THC.', en: 'Reports daily cannabis use; urine drug screen positive for THC.' },
         refs: [
           { doc: 'p5-review', at: 's' },
           { doc: 'p5-lab', at: 'uds' },
         ],
       },
       {
-        t: 'Weight up 3 kg since March; glucose, cholesterol, prolactin and QTc within range.',
+        t: {
+          nl: 'Gewicht 3 kg toegenomen sinds maart; glucose, cholesterol, prolactine en QTc binnen de normaalwaarden.',
+          en: 'Weight up 3 kg since March; glucose, cholesterol, prolactin and QTc within range.',
+        },
         refs: [
           { doc: 'p5-review', at: 'se' },
           { doc: 'p5-lab', at: 'glu' },
           { doc: 'p5-lab', at: 'qtc' },
         ],
       },
-      { t: 'Student on study leave; plans to return in February 2027.', refs: [{ doc: 'p5-review', at: 's' }] },
+      {
+        t: { nl: 'Student met studieonderbreking; wil in februari 2027 weer beginnen.', en: 'Student on study leave; plans to return in February 2027.' },
+        refs: [{ doc: 'p5-review', at: 's' }],
+      },
     ],
     risk: [
-      { who: 'Psychiatrist, early psychosis team', kind: 'Review', ref: { doc: 'p5-review', at: 'risk' } },
-      { who: 'Crisis service', kind: 'Crisis assessment', ref: { doc: 'p5-crisis', at: 'risk' } },
+      {
+        who: { nl: 'Psychiater, FACT-team Vroege Psychose', en: 'Psychiatrist, early psychosis team' },
+        kind: { nl: 'Evaluatie', en: 'Review' },
+        ref: { doc: 'p5-review', at: 'risk' },
+      },
+      { who: { nl: 'Crisisdienst', en: 'Crisis service' }, kind: { nl: 'Crisisbeoordeling', en: 'Crisis assessment' }, ref: { doc: 'p5-crisis', at: 'risk' } },
     ],
     flags: [
-      { t: 'Dose increased to 15 mg on 22 Jul 2026; no side-effect check has been recorded since the increase.', refs: [{ doc: 'p5-review', at: 'p' }] },
-      { t: 'Last recorded side-effect check, at 10 mg: no movement side effects, no restlessness.', refs: [{ doc: 'p5-review', at: 'se' }] },
-      { t: 'Referral to addiction care offered in July; he wanted time to think it over.', refs: [{ doc: 'p5-review', at: 'p' }] },
+      {
+        t: {
+          nl: 'Dosis op 22 jul 2026 verhoogd naar 15 mg; sindsdien is geen controle op bijwerkingen vastgelegd.',
+          en: 'Dose increased to 15 mg on 22 Jul 2026; no side-effect check has been recorded since the increase.',
+        },
+        refs: [{ doc: 'p5-review', at: 'p' }],
+      },
+      {
+        t: {
+          nl: 'Laatste vastgelegde controle op bijwerkingen, bij 10 mg: geen bewegingsstoornissen, geen onrust.',
+          en: 'Last recorded side-effect check, at 10 mg: no movement side effects, no restlessness.',
+        },
+        refs: [{ doc: 'p5-review', at: 'se' }],
+      },
+      {
+        t: {
+          nl: 'In juli is verwijzing naar verslavingszorg aangeboden; hij wilde erover nadenken.',
+          en: 'Referral to addiction care offered in July; he wanted time to think it over.',
+        },
+        refs: [{ doc: 'p5-review', at: 'p' }],
+      },
     ],
     visits: [
-      { date: '22 Jul 2026', who: 'Early psychosis team', reason: 'Three-monthly review', action: 'In remission; aripiprazole 10 to 15 mg for remaining suspiciousness', ref: { doc: 'p5-review' } },
-      { date: '18 Mar 2026', who: 'Inpatient', reason: 'First episode of psychosis', action: 'Admitted 3 weeks; aripiprazole started; transferred to early psychosis team', ref: { doc: 'p5-dis' } },
-      { date: '18 Mar 2026', who: 'Crisis service', reason: 'Paranoid beliefs, not sleeping', action: 'Home assessment; voluntary admission the same evening', ref: { doc: 'p5-crisis' } },
+      {
+        date: '2026-07-22',
+        who: { nl: 'FACT-team Vroege Psychose', en: 'Early psychosis team' },
+        reason: { nl: 'Driemaandelijkse evaluatie', en: 'Three-monthly review' },
+        action: { nl: 'In remissie; aripiprazol 10 naar 15 mg wegens resterende achterdocht', en: 'In remission; aripiprazole 10 to 15 mg for remaining suspiciousness' },
+        ref: { doc: 'p5-review' },
+      },
+      {
+        date: '2026-03-18',
+        who: { nl: 'Klinische opname', en: 'Inpatient' },
+        reason: { nl: 'Eerste psychotische episode', en: 'First episode of psychosis' },
+        action: { nl: '3 weken opgenomen; aripiprazol gestart; overgedragen aan FACT-team', en: 'Admitted 3 weeks; aripiprazole started; transferred to early psychosis team' },
+        ref: { doc: 'p5-dis' },
+      },
+      {
+        date: '2026-03-18',
+        who: { nl: 'Crisisdienst', en: 'Crisis service' },
+        reason: { nl: 'Paranoïde gedachten, niet slapen', en: 'Paranoid beliefs, not sleeping' },
+        action: { nl: 'Beoordeling thuis; dezelfde avond vrijwillige opname', en: 'Home assessment; voluntary admission the same evening' },
+        ref: { doc: 'p5-crisis' },
+      },
     ],
     meds: {
-      current: [{ name: 'Aripiprazole', dose: '15 mg OD' }],
-      past: [{ name: 'Lorazepam 1 mg', when: 'Mar to Apr 2026', why: 'short course during admission' }],
+      current: [{ name: { nl: 'Aripiprazol', en: 'Aripiprazole' }, dose: { nl: '15 mg 1 dd', en: '15 mg OD' } }],
+      past: [{ name: { nl: 'Lorazepam 1 mg', en: 'Lorazepam 1 mg' }, when: { nl: 'mrt tot apr 2026', en: 'Mar to Apr 2026' }, why: { nl: 'korte kuur tijdens opname', en: 'short course during admission' } }],
       ref: { doc: 'p5-meds' },
     },
     tests: [
-      { name: 'Fasting glucose', value: '5.1 mmol/L', range: '< 6.1', date: '15 Jul 2026', status: 'normal', ref: { doc: 'p5-lab', at: 'glu' } },
-      { name: 'Total cholesterol', value: '4.6 mmol/L', range: '< 5.0', date: '15 Jul 2026', status: 'normal', ref: { doc: 'p5-lab', at: 'chol' } },
-      { name: 'Prolactin', value: '6 µg/L', range: '< 15', date: '15 Jul 2026', status: 'normal', ref: { doc: 'p5-lab', at: 'prl' } },
-      { name: 'ECG QTc', value: '418 ms', range: '< 450', date: '15 Jul 2026', status: 'normal', ref: { doc: 'p5-lab', at: 'qtc' } },
-      { name: 'Urine drug screen', value: 'THC positive', range: 'negative', date: '15 Jul 2026', status: 'abnormal', ref: { doc: 'p5-lab', at: 'uds' } },
+      { name: { nl: 'Glucose (nuchter)', en: 'Fasting glucose' }, value: '5.1 mmol/L', range: '< 6.1', date: '2026-07-15', status: 'normal', ref: { doc: 'p5-lab', at: 'glu' } },
+      { name: { nl: 'Cholesterol totaal', en: 'Total cholesterol' }, value: '4.6 mmol/L', range: '< 5.0', date: '2026-07-15', status: 'normal', ref: { doc: 'p5-lab', at: 'chol' } },
+      { name: { nl: 'Prolactine', en: 'Prolactin' }, value: '6 µg/L', range: '< 15', date: '2026-07-15', status: 'normal', ref: { doc: 'p5-lab', at: 'prl' } },
+      { name: 'ECG QTc', value: '418 ms', range: '< 450', date: '2026-07-15', status: 'normal', ref: { doc: 'p5-lab', at: 'qtc' } },
+      {
+        name: { nl: 'Urine drugsscreening', en: 'Urine drug screen' },
+        value: { nl: 'THC positief', en: 'THC positive' },
+        range: { nl: 'negatief', en: 'negative' },
+        date: '2026-07-15',
+        status: 'abnormal',
+        ref: { doc: 'p5-lab', at: 'uds' },
+      },
     ],
-    gaps: ['No relapse prevention plan (planned at discharge in April)', 'Family psychiatric history not documented', 'Amount of cannabis per week not quantified'],
+    gaps: [
+      { nl: 'Geen signaleringsplan (bij ontslag in april gepland)', en: 'No relapse prevention plan (planned at discharge in April)' },
+      { nl: 'Psychiatrische familieanamnese niet vastgelegd', en: 'Family psychiatric history not documented' },
+      { nl: 'Hoeveelheid cannabis per week niet vastgelegd', en: 'Amount of cannabis per week not quantified' },
+    ],
     qa: [
       {
-        q: 'What were the symptoms at first presentation?',
-        a: 'Convinced the neighbours were watching him through the walls; had not slept for four nights and had taped over the windows. No thoughts of harming himself or others. Admitted voluntarily the same evening.',
+        q: { nl: 'Wat waren de klachten bij de eerste presentatie?', en: 'What were the symptoms at first presentation?' },
+        a: {
+          nl: 'Was ervan overtuigd dat de buren hem via de muren in de gaten hielden; had vier nachten niet geslapen en de ramen afgeplakt. Geen gedachten om zichzelf of anderen schade toe te brengen. Dezelfde avond vrijwillig opgenomen.',
+          en: 'Convinced the neighbours were watching him through the walls; had not slept for four nights and had taped over the windows. No thoughts of harming himself or others. Admitted voluntarily the same evening.',
+        },
         refs: [
           { doc: 'p5-crisis', at: 'reason' },
           { doc: 'p5-crisis', at: 'mse' },
@@ -98,17 +177,23 @@ export const mulder: PatientBundle = {
         ],
       },
       {
-        q: 'Any side effects recorded since the dose increase?',
-        a: 'None recorded. The last side-effect check was on 22 Jul 2026, at 10 mg: no movement side effects, no restlessness. No review has been recorded since the increase to 15 mg.',
+        q: { nl: 'Zijn er sinds de dosisverhoging bijwerkingen vastgelegd?', en: 'Any side effects recorded since the dose increase?' },
+        a: {
+          nl: 'Geen. De laatste controle op bijwerkingen was op 22 jul 2026, bij 10 mg: geen bewegingsstoornissen, geen onrust. Sinds de verhoging naar 15 mg is geen evaluatie vastgelegd.',
+          en: 'None recorded. The last side-effect check was on 22 Jul 2026, at 10 mg: no movement side effects, no restlessness. No review has been recorded since the increase to 15 mg.',
+        },
         refs: [
           { doc: 'p5-review', at: 'se' },
           { doc: 'p5-review', at: 'p' },
         ],
       },
       {
-        q: 'Can he safely stop his medication before university?',
+        q: { nl: 'Kan hij veilig stoppen met zijn medicatie voordat hij weer gaat studeren?', en: 'Can he safely stop his medication before university?' },
         out: true,
-        a: 'PreConsult summarizes the record and does not advise on treatment.\n\nRelevant entries: first episode March 2026; in remission since July; daily cannabis use; the relapse prevention plan planned at discharge is not on file.',
+        a: {
+          nl: 'PreConsult vat het dossier samen en geeft geen behandeladvies.\n\nRelevante gegevens: eerste episode maart 2026; in remissie sinds juli; dagelijks cannabisgebruik; het bij ontslag geplande signaleringsplan zit niet in het dossier.',
+          en: 'PreConsult summarizes the record and does not advise on treatment.\n\nRelevant entries: first episode March 2026; in remission since July; daily cannabis use; the relapse prevention plan planned at discharge is not on file.',
+        },
         refs: [
           { doc: 'p5-dis', at: 'dx' },
           { doc: 'p5-review', at: 'e' },

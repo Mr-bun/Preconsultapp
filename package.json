@@ -1,7 +1,7 @@
 {
   "name": "preconsult-demo",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "PreConsult: summary-only pre-consultation record view for psychiatry, built on fully synthetic patient data.",
   "type": "module",
   "scripts": {

@@ -12,55 +12,81 @@ export const smit: PatientBundle = {
     dob: '1948-04-19',
     mrn: 'SYN-03790',
     address: 'Beukenhof 2, 3571 ZZ Utrecht',
-    specialty: 'Old-age psychiatry',
-    visitType: 'Consult',
+    specialty: { nl: 'Ouderenpsychiatrie', en: 'Old-age psychiatry' },
+    visitType: { nl: 'Consult', en: 'Consult' },
     time: '11:30',
-    slot: 'Tue 3 Nov 2026 · 11:30',
-    allergies: 'Haloperidol (severe rigidity, 2025)',
+    durationMin: 60,
+    allergies: { nl: 'Haloperidol (ernstige rigiditeit, 2025)', en: 'Haloperidol (severe rigidity, 2025)' },
     reason: {
-      t: 'Assessment of new visual hallucinations and day-to-day changes in alertness. The neurologist asks to differentiate psychosis in Parkinson disease, dementia and delirium.',
+      t: {
+        nl: 'Beoordeling van nieuwe visuele hallucinaties en wisselende alertheid. De neuroloog vraagt onderscheid te maken tussen psychose bij de ziekte van Parkinson, dementie en delier.',
+        en: 'Assessment of new visual hallucinations and day-to-day changes in alertness. The neurologist asks to differentiate psychosis in Parkinson disease, dementia and delirium.',
+      },
       refs: [{ doc: 'p4-neuro', at: 'question' }],
     },
     measures: [
-      { label: 'MoCA', value: '21/30 (was 25)', date: '7 Oct 2026', ref: { doc: 'p4-neuro', at: 'exam' } },
-      { label: 'BP lying / standing', value: '138/80 · 112/70', date: '7 Oct 2026', ref: { doc: 'p4-neuro', at: 'exam' } },
-      { label: 'Sodium', value: '133 mmol/L', date: '7 Oct 2026', ref: { doc: 'p4-lab', at: 'na' } },
+      { label: 'MoCA', value: '21/30 (was 25)', date: '2026-10-07', ref: { doc: 'p4-neuro', at: 'exam' } },
+      { label: { nl: 'RR liggend / staand', en: 'BP lying / standing' }, value: '138/80 · 112/70', date: '2026-10-07', ref: { doc: 'p4-neuro', at: 'exam' } },
+      { label: { nl: 'Natrium', en: 'Sodium' }, value: '133 mmol/L', date: '2026-10-07', ref: { doc: 'p4-lab', at: 'na' } },
     ],
-    conditions: ['Parkinson disease (2017)', 'Overactive bladder', 'Orthostatic hypotension', 'Lives with wife'],
+    conditions: [
+      { nl: 'Ziekte van Parkinson (2017)', en: 'Parkinson disease (2017)' },
+      { nl: 'Overactieve blaas', en: 'Overactive bladder' },
+      { nl: 'Orthostatische hypotensie', en: 'Orthostatic hypotension' },
+      { nl: 'Woont met echtgenote', en: 'Lives with wife' },
+    ],
     summary: [
-      { t: 'Parkinson disease since 2017, on levodopa/carbidopa and rasagiline.', refs: [{ doc: 'p4-neuro', at: 'hx' }, { doc: 'p4-meds', at: 'levo' }] },
       {
-        t: 'His wife reports about six weeks of visual hallucinations (people and animals in the room) and alertness that varies from day to day.',
+        t: { nl: 'Ziekte van Parkinson sinds 2017; gebruikt levodopa/carbidopa en rasagiline.', en: 'Parkinson disease since 2017, on levodopa/carbidopa and rasagiline.' },
+        refs: [
+          { doc: 'p4-neuro', at: 'hx' },
+          { doc: 'p4-meds', at: 'levo' },
+        ],
+      },
+      {
+        t: {
+          nl: 'Zijn echtgenote meldt sinds ongeveer zes weken visuele hallucinaties (mensen en dieren in de kamer) en een alertheid die per dag wisselt.',
+          en: 'His wife reports about six weeks of visual hallucinations (people and animals in the room) and alertness that varies from day to day.',
+        },
         refs: [{ doc: 'p4-neuro', at: 'hx' }],
       },
-      { t: 'MoCA 21/30, down from 25/30 in October 2025.', refs: [{ doc: 'p4-neuro', at: 'exam' }] },
+      { t: { nl: 'MoCA 21/30, gedaald van 25/30 in oktober 2025.', en: 'MoCA 21/30, down from 25/30 in October 2025.' }, refs: [{ doc: 'p4-neuro', at: 'exam' }] },
       {
-        t: 'Delirium during a pneumonia admission in November 2025; severe rigidity after haloperidol, recorded as an allergy.',
+        t: {
+          nl: 'Delier tijdens een opname wegens pneumonie in november 2025; ernstige rigiditeit na haloperidol, geregistreerd als allergie.',
+          en: 'Delirium during a pneumonia admission in November 2025; severe rigidity after haloperidol, recorded as an allergy.',
+        },
         refs: [
           { doc: 'p4-dis2025', at: 'course' },
           { doc: 'p4-dis2025', at: 'halo' },
         ],
       },
-      { t: 'Oxybutynin 5 mg twice daily started in June 2026.', refs: [{ doc: 'p4-gp', at: 'p' }] },
+      { t: { nl: 'Oxybutynine 5 mg tweemaal daags gestart in juni 2026.', en: 'Oxybutynin 5 mg twice daily started in June 2026.' }, refs: [{ doc: 'p4-gp', at: 'p' }] },
       {
-        t: 'Sodium 133 mmol/L and eGFR 58, both just below the reference range.',
+        t: { nl: 'Natrium 133 mmol/L en eGFR 58, beide net onder de referentiewaarde.', en: 'Sodium 133 mmol/L and eGFR 58, both just below the reference range.' },
         refs: [
           { doc: 'p4-lab', at: 'na' },
           { doc: 'p4-lab', at: 'egfr' },
         ],
       },
     ],
-    risk: [{ who: 'Wife, via neurologist', kind: 'Collateral', ref: { doc: 'p4-neuro', at: 'risk' } }],
+    risk: [{ who: { nl: 'Echtgenote, via neuroloog', en: 'Wife, via neurologist' }, kind: { nl: 'Heteroanamnese', en: 'Collateral' }, ref: { doc: 'p4-neuro', at: 'risk' } }],
     flags: [
       {
-        t: 'Oxybutynin was started on 2 Jun 2026; his wife dates the hallucinations from about late August 2026.',
+        t: {
+          nl: 'Oxybutynine is gestart op 2 jun 2026; zijn echtgenote dateert de hallucinaties vanaf ongeveer eind augustus 2026.',
+          en: 'Oxybutynin was started on 2 Jun 2026; his wife dates the hallucinations from about late August 2026.',
+        },
         refs: [
           { doc: 'p4-gp', at: 'p' },
           { doc: 'p4-neuro', at: 'hx' },
         ],
       },
       {
-        t: 'Earlier medicines stopped for side effects: amantadine (confusion, 2021) and ropinirole (impulse control symptoms, 2024).',
+        t: {
+          nl: 'Eerder gestopt wegens bijwerkingen: amantadine (verwardheid, 2021) en ropinirol (impulscontroleklachten, 2024).',
+          en: 'Earlier medicines stopped for side effects: amantadine (confusion, 2021) and ropinirole (impulse control symptoms, 2024).',
+        },
         refs: [
           { doc: 'p4-meds', at: 'aman' },
           { doc: 'p4-meds', at: 'ropi' },
@@ -68,35 +94,60 @@ export const smit: PatientBundle = {
       },
     ],
     visits: [
-      { date: '7 Oct 2026', who: 'Neurology', reason: 'Hallucinations and fluctuating alertness', action: 'Levodopa unchanged; MoCA 21; referral to old-age psychiatry', ref: { doc: 'p4-neuro' } },
-      { date: '2 Jun 2026', who: 'GP', reason: 'Urinary urgency and frequency', action: 'Urine dipstick negative; oxybutynin 5 mg BID started', ref: { doc: 'p4-gp' } },
-      { date: '11 Nov 2025', who: 'Internal medicine, inpatient', reason: 'Pneumonia; delirium on day 2', action: 'Haloperidol given; severe rigidity; recorded as allergy', ref: { doc: 'p4-dis2025' } },
+      {
+        date: '2026-10-07',
+        who: { nl: 'Neurologie', en: 'Neurology' },
+        reason: { nl: 'Hallucinaties en wisselende alertheid', en: 'Hallucinations and fluctuating alertness' },
+        action: { nl: 'Levodopa ongewijzigd; MoCA 21; verwijzing ouderenpsychiatrie', en: 'Levodopa unchanged; MoCA 21; referral to old-age psychiatry' },
+        ref: { doc: 'p4-neuro' },
+      },
+      {
+        date: '2026-06-02',
+        who: { nl: 'Huisarts', en: 'GP' },
+        reason: { nl: 'Aandrang en vaak plassen', en: 'Urinary urgency and frequency' },
+        action: { nl: 'Urinestick negatief; oxybutynine 5 mg 2 dd gestart', en: 'Urine dipstick negative; oxybutynin 5 mg BID started' },
+        ref: { doc: 'p4-gp' },
+      },
+      {
+        date: '2025-11-11',
+        who: { nl: 'Interne geneeskunde, opname', en: 'Internal medicine, inpatient' },
+        reason: { nl: 'Pneumonie; delier op dag 2', en: 'Pneumonia; delirium on day 2' },
+        action: { nl: 'Haloperidol gegeven; ernstige rigiditeit; geregistreerd als allergie', en: 'Haloperidol given; severe rigidity; recorded as allergy' },
+        ref: { doc: 'p4-dis2025' },
+      },
     ],
     meds: {
       current: [
-        { name: 'Levodopa/carbidopa', dose: '100/25 mg TID' },
-        { name: 'Rasagiline', dose: '1 mg OD' },
-        { name: 'Oxybutynin', dose: '5 mg BID' },
-        { name: 'Macrogol', dose: '1 sachet OD' },
+        { name: { nl: 'Levodopa/carbidopa', en: 'Levodopa/carbidopa' }, dose: { nl: '100/25 mg 3 dd', en: '100/25 mg TID' } },
+        { name: { nl: 'Rasagiline', en: 'Rasagiline' }, dose: { nl: '1 mg 1 dd', en: '1 mg OD' } },
+        { name: { nl: 'Oxybutynine', en: 'Oxybutynin' }, dose: { nl: '5 mg 2 dd', en: '5 mg BID' } },
+        { name: { nl: 'Macrogol', en: 'Macrogol' }, dose: { nl: '1 sachet 1 dd', en: '1 sachet OD' } },
       ],
       past: [
-        { name: 'Ropinirole 4 mg', when: '2018 to 2024', why: 'impulse control symptoms' },
-        { name: 'Amantadine 100 mg', when: '2021', why: 'confusion' },
+        { name: { nl: 'Ropinirol 4 mg', en: 'Ropinirole 4 mg' }, when: { nl: '2018 tot 2024', en: '2018 to 2024' }, why: { nl: 'impulscontroleklachten', en: 'impulse control symptoms' } },
+        { name: { nl: 'Amantadine 100 mg', en: 'Amantadine 100 mg' }, when: { nl: '2021', en: '2021' }, why: { nl: 'verwardheid', en: 'confusion' } },
       ],
       ref: { doc: 'p4-meds' },
     },
     tests: [
-      { name: 'MoCA', value: '21/30', range: '≥ 26', date: '7 Oct 2026', status: 'low', ref: { doc: 'p4-neuro', at: 'exam' } },
-      { name: 'Sodium', value: '133 mmol/L', range: '135 to 145', date: '7 Oct 2026', status: 'low', ref: { doc: 'p4-lab', at: 'na' } },
-      { name: 'eGFR (CKD-EPI)', value: '58 mL/min/1.73m²', range: '> 60', date: '7 Oct 2026', status: 'low', ref: { doc: 'p4-lab', at: 'egfr' } },
-      { name: 'CRP', value: '4 mg/L', range: '< 10', date: '7 Oct 2026', status: 'normal', ref: { doc: 'p4-lab', at: 'crp' } },
-      { name: 'Vitamin B12', value: '310 pmol/L', range: '145 to 600', date: '7 Oct 2026', status: 'normal', ref: { doc: 'p4-lab', at: 'b12' } },
+      { name: 'MoCA', value: '21/30', range: '≥ 26', date: '2026-10-07', status: 'low', ref: { doc: 'p4-neuro', at: 'exam' } },
+      { name: { nl: 'Natrium', en: 'Sodium' }, value: '133 mmol/L', range: '135 to 145', date: '2026-10-07', status: 'low', ref: { doc: 'p4-lab', at: 'na' } },
+      { name: 'eGFR (CKD-EPI)', value: '58 mL/min/1.73m²', range: '> 60', date: '2026-10-07', status: 'low', ref: { doc: 'p4-lab', at: 'egfr' } },
+      { name: 'CRP', value: '4 mg/L', range: '< 10', date: '2026-10-07', status: 'normal', ref: { doc: 'p4-lab', at: 'crp' } },
+      { name: { nl: 'Vitamine B12', en: 'Vitamin B12' }, value: '310 pmol/L', range: '145 to 600', date: '2026-10-07', status: 'normal', ref: { doc: 'p4-lab', at: 'b12' } },
     ],
-    gaps: ['No urinalysis since the hallucinations began', 'No brain imaging since 2017', 'Sleep behavior (for example acting out dreams) not documented'],
+    gaps: [
+      { nl: 'Geen urineonderzoek sinds het begin van de hallucinaties', en: 'No urinalysis since the hallucinations began' },
+      { nl: 'Geen beeldvorming van de hersenen sinds 2017', en: 'No brain imaging since 2017' },
+      { nl: 'Slaapgedrag (bijvoorbeeld dromen naspelen) niet vastgelegd', en: 'Sleep behavior (for example acting out dreams) not documented' },
+    ],
     qa: [
       {
-        q: 'Timeline of medication changes and symptom onset',
-        a: '2 Jun 2026: oxybutynin started.\nAbout late Aug 2026: hallucinations begin (wife’s account).\n7 Oct 2026: neurology review, levodopa unchanged.\nEarlier: amantadine stopped 2021 (confusion); ropinirole stopped 2024 (impulse control symptoms).',
+        q: { nl: 'Tijdlijn van medicatiewijzigingen en begin van de klachten', en: 'Timeline of medication changes and symptom onset' },
+        a: {
+          nl: '2 jun 2026: oxybutynine gestart.\nOngeveer eind aug 2026: begin hallucinaties (volgens echtgenote).\n7 okt 2026: controle neurologie, levodopa ongewijzigd.\nEerder: amantadine gestopt 2021 (verwardheid); ropinirol gestopt 2024 (impulscontroleklachten).',
+          en: '2 Jun 2026: oxybutynin started.\nAbout late Aug 2026: hallucinations begin (wife’s account).\n7 Oct 2026: neurology review, levodopa unchanged.\nEarlier: amantadine stopped 2021 (confusion); ropinirole stopped 2024 (impulse control symptoms).',
+        },
         refs: [
           { doc: 'p4-gp', at: 'p' },
           { doc: 'p4-neuro', at: 'hx' },
@@ -105,17 +156,23 @@ export const smit: PatientBundle = {
         ],
       },
       {
-        q: 'What happened with haloperidol?',
-        a: 'Given haloperidol 1 mg twice for delirium on day 2 of a pneumonia admission. Severe rigidity and reduced mobility within 24 hours; haloperidol stopped and he recovered over four days. Recorded as an allergy.',
+        q: { nl: 'Wat gebeurde er met haloperidol?', en: 'What happened with haloperidol?' },
+        a: {
+          nl: 'Op dag 2 van een opname wegens pneumonie tweemaal haloperidol 1 mg gekregen voor een delier. Binnen 24 uur ernstige rigiditeit en verminderde mobiliteit; haloperidol gestopt, herstel in vier dagen. Geregistreerd als allergie.',
+          en: 'Given haloperidol 1 mg twice for delirium on day 2 of a pneumonia admission. Severe rigidity and reduced mobility within 24 hours; haloperidol stopped and he recovered over four days. Recorded as an allergy.',
+        },
         refs: [
           { doc: 'p4-dis2025', at: 'course' },
           { doc: 'p4-dis2025', at: 'halo' },
         ],
       },
       {
-        q: 'Which antipsychotic is safest for him?',
+        q: { nl: 'Welk antipsychoticum is voor hem het veiligst?', en: 'Which antipsychotic is safest for him?' },
         out: true,
-        a: 'PreConsult summarizes the record and does not advise on prescribing.\n\nRelevant entries: severe rigidity after haloperidol in November 2025, recorded as an allergy. No other antipsychotic is recorded.',
+        a: {
+          nl: 'PreConsult vat het dossier samen en adviseert niet over voorschrijven.\n\nRelevante gegevens: ernstige rigiditeit na haloperidol in november 2025, geregistreerd als allergie. Er is geen ander antipsychoticum vastgelegd.',
+          en: 'PreConsult summarizes the record and does not advise on prescribing.\n\nRelevant entries: severe rigidity after haloperidol in November 2025, recorded as an allergy. No other antipsychotic is recorded.',
+        },
         refs: [{ doc: 'p4-dis2025', at: 'halo' }, { doc: 'p4-meds' }],
       },
     ],

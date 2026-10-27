@@ -25,8 +25,50 @@ export function shortDate(iso: string, lang: Lang): string {
   return `${d} ${(MONTHS.en.at(m - 1) ?? '').slice(0, 3)} ${y}`;
 }
 
-export function tr(t: T, lang: Lang): string {
-  return t[lang];
+const MON_SHORT: Record<Lang, string[]> = {
+  nl: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+};
+
+/** Interface date: "29 sep 2026" / "29 Sep 2026". */
+export function mediumDate(iso: string, lang: Lang): string {
+  const [y, m, d] = parts(iso);
+  return `${d} ${MON_SHORT[lang].at(m - 1)} ${y}`;
+}
+
+/** Dutch writes decimals with a comma and ranges with "tot". */
+export function localizeNum(s: string, lang: Lang): string {
+  if (lang === 'en') return s;
+  return s.replace(/(\d)\.(\d)/g, '$1,$2').replace(/ to /g, ' tot ');
+}
+
+/** A language-neutral string (localized numbers) or a bilingual pair. */
+export function txt(x: string | T, lang: Lang): string {
+  return typeof x === 'string' ? localizeNum(x, lang) : x[lang];
+}
+
+/** Today's local date as yyyy-mm-dd. */
+export function todayISO(now = new Date()): string {
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+}
+
+export function addDays(iso: string, n: number): string {
+  const [y, m, d] = parts(iso);
+  return todayISO(new Date(y, m - 1, d + n));
+}
+
+/** "dinsdag 27 oktober 2026" / "Tuesday 27 October 2026". */
+export function weekdayDate(iso: string, lang: Lang): string {
+  const [y, m, d] = parts(iso);
+  const fmt = new Intl.DateTimeFormat(lang === 'nl' ? 'nl-NL' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  return fmt.format(new Date(y, m - 1, d));
+}
+
+/** Whole years between a birth date and a given day. */
+export function ageOn(dob: string, on: string): number {
+  const [y, m, d] = parts(dob);
+  const [Y, M, D] = parts(on);
+  return Y - y - (M < m || (M === m && D < d) ? 1 : 0);
 }
 
 /**
@@ -126,7 +168,7 @@ export function passageText(ref: Ref): T | undefined {
 export function refLabel(ref: Ref, lang: Lang): string {
   const doc = DOCS[ref.doc];
   if (!doc) return 'Unknown source';
-  return `${doc.short[lang]}, ${shortDate(doc.date, lang)}`;
+  return `${doc.short[lang]}, ${mediumDate(doc.date, lang)}`;
 }
 
 /** Collapse repeated citations of the same document into one chip that keeps the first passage. */

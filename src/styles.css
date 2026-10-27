@@ -1173,3 +1173,514 @@ li.hl {
     transition: none;
   }
 }
+
+/* ---------- v0.4: welcome, schedule, switcher ---------- */
+.seg button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+}
+.btn-dark {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #3a4744;
+  background: transparent;
+  color: #dde4e1;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-dark:hover {
+  border-color: #6c7c78;
+}
+.btn-ghost {
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+.btn-ghost:disabled {
+  color: var(--ink-3);
+  cursor: default;
+}
+.btn-outline {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: #fff;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-block {
+  width: 100%;
+  margin-top: 8px;
+}
+.user {
+  text-align: right;
+  line-height: 1.25;
+}
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+.user-role {
+  font-size: 12px;
+  color: #a7b3af;
+}
+@media (max-width: 720px) {
+  .user {
+    display: none;
+  }
+}
+
+/* Welcome */
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink);
+}
+.welcome .foot {
+  color: #a7b3af;
+  max-width: 1120px;
+  width: 100%;
+}
+.welcome-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  color: #f3f5f4;
+}
+.welcome-top .brand {
+  flex: 0 1 auto;
+}
+.welcome-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+}
+.welcome-copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  color: #f3f5f4;
+}
+.welcome-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-line);
+}
+.welcome-title {
+  margin: 8px 0 12px;
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+.welcome-lead {
+  margin: 0 0 28px;
+  font-size: 17px;
+  color: #c9d3d0;
+  max-width: 560px;
+}
+.disclaimer {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: #e8f1f4;
+  border: 1px solid #c5d9e0;
+  color: var(--accent-ink);
+  font-size: 14px;
+  max-width: 560px;
+}
+.disclaimer .icon {
+  color: var(--accent);
+  margin-top: 1px;
+}
+.login {
+  flex: 0 1 400px;
+  min-width: 0;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.login-title {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+.login-warn {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-line);
+  color: var(--warn-ink);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.login-warn .icon {
+  color: #8a5300;
+  margin-top: 1px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.locked-input {
+  position: relative;
+}
+.locked-input input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 40px 0 12px;
+  border-radius: 8px;
+  border: 1px solid #c8d0cd;
+  background: #eef1f0;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 14px;
+  cursor: not-allowed;
+}
+.lock-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+}
+@media (max-width: 600px) {
+  .welcome-title {
+    font-size: 30px;
+  }
+}
+
+/* Sub bar in patient view */
+.subbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 24px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.subbar-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.subbar-patient {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+/* Schedule */
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.schedule-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px 24px;
+  margin-bottom: 16px;
+}
+.schedule-title-wrap .eyebrow {
+  margin-bottom: 4px;
+}
+.schedule-date {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+.schedule-date::first-letter {
+  text-transform: uppercase;
+}
+.schedule-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.day-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.schedule-empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--ink-2);
+}
+.cal {
+  position: relative;
+  padding-top: 8px;
+}
+.cal-grid {
+  position: relative;
+  margin-left: 56px;
+}
+.cal-hour {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--line-2);
+}
+.cal-hour-label {
+  position: absolute;
+  left: -56px;
+  top: -9px;
+  width: 48px;
+  text-align: right;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.cal-now {
+  position: absolute;
+  left: -8px;
+  right: 0;
+  border-top: 2px solid #c2410c;
+  z-index: 0;
+  pointer-events: none;
+}
+.cal-now::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c2410c;
+}
+.cal-now-label {
+  position: absolute;
+  left: -64px;
+  top: -10px;
+  width: 56px;
+  padding-right: 8px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c2410c;
+  background: #fff;
+  line-height: 18px;
+}
+.cal-events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cal-event-wrap {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  z-index: 1;
+}
+.cal-event {
+  width: 100%;
+  height: 100%;
+  min-height: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0 12px;
+  padding: 6px 12px;
+  line-height: 1.35;
+  border-radius: 8px;
+  border: 1px solid var(--accent-line);
+  border-left: 4px solid var(--accent);
+  background: #f2f8fa;
+  color: var(--ink);
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+}
+.cal-event:hover {
+  background: var(--accent-soft);
+}
+.cal-event.is-current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.cal-event.is-current .cal-meta,
+.cal-event.is-current .cal-time {
+  color: #d9ecf2;
+}
+.cal-time {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.cal-name {
+  font-weight: 600;
+}
+.cal-meta {
+  flex-basis: 100%;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+.tag-current {
+  background: #fff;
+  color: var(--accent-ink);
+}
+.plist-head,
+.plist-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1.5fr) minmax(0, 1.2fr) 90px 130px;
+  gap: 12px;
+  align-items: center;
+}
+.plist-head {
+  padding: 0 12px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+}
+.plist-row {
+  width: 100%;
+  min-height: 64px;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line-2);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.plist-row:hover {
+  background: #f6fafb;
+}
+.plist-row.is-current {
+  background: var(--accent-soft);
+}
+.plist-patient,
+.plist-visit {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.plist-open {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .plist-head {
+    display: none;
+  }
+  .plist-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .plist-docs {
+    display: none;
+  }
+  .plist-open {
+    text-align: left;
+  }
+}
+.schedule-compact {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+.schedule-compact .schedule-date {
+  font-size: 18px;
+}
+.schedule-compact .plist-head,
+.schedule-compact .plist-row {
+  grid-template-columns: 1fr;
+  gap: 2px;
+}
+.schedule-compact .plist-head,
+.schedule-compact .plist-docs {
+  display: none;
+}
+.schedule-compact .plist-open {
+  text-align: left;
+}
+
+/* Switcher drawer opens from the left */
+.drawer-left {
+  justify-content: flex-start;
+}
+.switcher {
+  width: min(520px, 100vw);
+  background: #fff;
+}
+.switcher .drawer-scroll {
+  padding: 16px 20px 32px;
+}
+.erased-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* Calendar entries: time and name on one line, details truncated rather than clipped */
+.cal-event {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  column-gap: 10px;
+  position: relative;
+}
+.cal-name,
+.cal-meta {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cal-meta {
+  grid-column: 1 / -1;
+}
+.cal-event .tag-current {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
