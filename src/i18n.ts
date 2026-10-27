@@ -1,4 +1,4 @@
-import type { Lang } from './data/types';
+import type { Lang, VisitKind, VisitMode } from './data/types';
 
 /** Every interface string, in English and Dutch. The Dutch object must match the English shape. */
 const en = {
@@ -46,6 +46,16 @@ const en = {
   current: 'Open now',
   scheduleHint: 'Select an appointment to open the summary.',
   legend: 'Appointment types',
+  kind: { intake: 'Intake', followup: 'Follow-up', medication: 'Medication check', consultation: 'Consultation' } as Record<VisitKind, string>,
+  kindLong: {
+    intake: 'Intake (new patient)',
+    followup: 'Follow-up',
+    medication: 'Medication check',
+    consultation: 'Consultation for another department',
+  } as Record<VisitKind, string>,
+  mode: { onsite: 'On site', video: 'Video', phone: 'Phone' } as Record<VisitMode, string>,
+  themeToDark: 'Switch to dark mode',
+  themeToLight: 'Switch to light mode',
   years: 'y',
   female: 'Female',
   male: 'Male',
@@ -174,6 +184,16 @@ const nl: Strings = {
   current: 'Nu geopend',
   scheduleHint: 'Kies een afspraak om de samenvatting te openen.',
   legend: 'Soorten afspraken',
+  kind: { intake: 'Intake', followup: 'Vervolgconsult', medication: 'Medicatiecontrole', consultation: 'Consult' },
+  kindLong: {
+    intake: 'Intake (nieuwe patiënt)',
+    followup: 'Vervolgconsult',
+    medication: 'Medicatiecontrole',
+    consultation: 'Consult voor een andere afdeling',
+  },
+  mode: { onsite: 'Op locatie', video: 'Beeldbellen', phone: 'Telefonisch' },
+  themeToDark: 'Donkere modus aanzetten',
+  themeToLight: 'Lichte modus aanzetten',
   years: 'jr',
   female: 'Vrouw',
   male: 'Man',

@@ -13,7 +13,7 @@ export const hendriks: PatientBundle = {
     mrn: 'SYN-03348',
     address: 'Vlierweg 31, 3554 ZZ Utrecht',
     specialty: { nl: 'Psychiatrie', en: 'Psychiatry' },
-    visitType: { nl: 'Lithiumcontrole', en: 'Lithium review' },
+    visit: { kind: 'medication', mode: 'phone', reason: { nl: 'Lithiumcontrole, vervroegd', en: 'Lithium monitoring, brought forward' } },
     time: '09:50',
     durationMin: 30,
     allergies: { nl: 'Lamotrigine (huiduitslag, 2017)', en: 'Lamotrigine (rash, 2017)' },

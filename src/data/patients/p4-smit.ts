@@ -13,7 +13,7 @@ export const smit: PatientBundle = {
     mrn: 'SYN-03790',
     address: 'Beukenhof 2, 3571 ZZ Utrecht',
     specialty: { nl: 'Ouderenpsychiatrie', en: 'Old-age psychiatry' },
-    visitType: { nl: 'Consult', en: 'Consult' },
+    visit: { kind: 'consultation', mode: 'onsite', reason: { nl: 'Visuele hallucinaties, vraag van geriatrie', en: 'Visual hallucinations, geriatrics request' } },
     time: '11:30',
     durationMin: 60,
     allergies: { nl: 'Haloperidol (ernstige rigiditeit, 2025)', en: 'Haloperidol (severe rigidity, 2025)' },

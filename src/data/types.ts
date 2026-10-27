@@ -63,6 +63,9 @@ export interface Stmt {
 /** Plain strings are language-neutral values (numbers, codes); the UI localizes decimals for Dutch. */
 export type Txt = string | T;
 
+export type VisitKind = 'intake' | 'followup' | 'medication' | 'consultation';
+export type VisitMode = 'onsite' | 'video' | 'phone';
+
 export interface Patient {
   id: string;
   name: string;
@@ -74,7 +77,8 @@ export interface Patient {
   mrn: string;
   address: string;
   specialty: T;
-  visitType: T;
+  /** Standard appointment type (as in hospital and GGZ agendas), how the visit takes place, and its reason. */
+  visit: { kind: VisitKind; mode: VisitMode; reason: T };
   /** Appointment start time today, HH:MM. The schedule is always dated to the day it is viewed. */
   time: string;
   durationMin: number;

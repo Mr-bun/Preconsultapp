@@ -24,11 +24,12 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
           <div className="glance-slot">
             <div className="muted small">{S.consultation}</div>
             <div className="strong">
-              {p.specialty[lang]} · {p.visitType[lang]}
+              {p.specialty[lang]} · {S.kind[p.visit.kind]}
             </div>
             <div className="mono muted small">
-              {mediumDate(today, lang)} · {p.time}
+              {mediumDate(today, lang)} · {p.time} · {S.mode[p.visit.mode]}
             </div>
+            <div className="muted small">{p.visit.reason[lang]}</div>
           </div>
         </div>
         <div className="tiles">

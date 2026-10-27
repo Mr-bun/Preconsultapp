@@ -8,7 +8,8 @@ A clickable prototype of **PreConsult**: a summary-only, pre-consultation record
 
 - **Welcome and demo sign-in.** The username and password are prefilled and locked, so nobody can type real employee credentials. The password is a masked, read-only text field rather than a password input, so browsers never offer to save or autofill it.
 - **Whole-app NL / EN toggle.** Interface, summaries, questions and source documents all switch language. The choice is remembered in the browser.
-- **Today's schedule.** A day calendar dated to the real current day, with a list view toggle. Select an appointment to open the summary, or switch patients from inside a summary.
+- **Today's schedule.** A day calendar dated to the real current day, with a list view toggle. Appointments use standard types (intake, follow-up, medication check, consultation for another department) in colorblind-safe colors, plus the visit reason and whether it is on site, by video or by phone. Select an appointment to open the summary, or switch patients from inside a summary.
+- **Light and dark mode.** Follows the device setting until the user picks one; source documents keep their paper look.
 
 - **Five synthetic psychiatry patients** with 29 source documents in Dutch clinical formats: GP referral letters (verwijsbrief), SOEP journal entries, POH-GGZ notes, discharge letters (ontslagbrief), a relapse prevention plan (signaleringsplan), a crisis assessment, lab reports and medication overviews.
 - **Cited summary.** Every summary statement, flag, test result and previous contact opens its source document with the cited passage highlighted.
@@ -54,4 +55,4 @@ A citation is `{ doc: 'p1-ref', at: 'hpi' }`: a document id plus the id of a pas
 
 ## Scope
 
-v0.5 is summary-only by design: no recommendations, no confidence scores, no medication advice. See the architecture and compliance notes kept alongside this project for the regulatory reasoning (MDR, EU AI Act, GDPR).
+v0.6 is summary-only by design: no recommendations, no confidence scores, no medication advice. See the architecture and compliance notes kept alongside this project for the regulatory reasoning (MDR, EU AI Act, GDPR).

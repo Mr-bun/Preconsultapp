@@ -13,7 +13,7 @@ export const koster: PatientBundle = {
     mrn: 'SYN-03105',
     address: 'Esdoornstraat 14, 3512 ZZ Utrecht',
     specialty: { nl: 'Psychiatrie', en: 'Psychiatry' },
-    visitType: { nl: 'Medicatie-evaluatie', en: 'Medication review' },
+    visit: { kind: 'intake', mode: 'onsite', reason: { nl: 'Medicatieadvies bij partiële respons', en: 'Medication advice after partial response' } },
     time: '09:00',
     durationMin: 45,
     allergies: { nl: 'Geen bekend', en: 'None known' },

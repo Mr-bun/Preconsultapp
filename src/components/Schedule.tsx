@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
-import type { Lang, Patient } from '../data/types';
+import type { Lang, Patient, VisitKind, VisitMode } from '../data/types';
 import { PATIENTS, docsFor } from '../data';
 import { addDays, ageOn, todayISO, weekdayDate } from '../lib/format';
 import { STRINGS } from '../i18n';
-import { CalendarIcon, ChevronIcon, ListIcon } from './Icons';
+import { CalendarIcon, ChevronIcon, ListIcon, ModeIcon } from './Icons';
 
 export type ScheduleView = 'calendar' | 'list';
 
-/** One quiet color per appointment type, so the day reads at a glance. */
-const TYPE_TONE: Record<string, string> = {
-  Intake: 'violet',
-  'Medication review': 'blue',
-  'Lithium review': 'green',
-  Consult: 'teal',
-};
-const toneOf = (p: Patient) => TYPE_TONE[p.visitType.en] ?? 'slate';
+/** Standard appointment types, each with its own colorblind-safe color (see styles.css, .kind-*). */
+const KINDS: VisitKind[] = ['intake', 'followup', 'medication', 'consultation'];
+const toneOf = (p: Patient) => `kind-${p.visit.kind}`;
+
+function Mode({ mode, lang }: { mode: VisitMode; lang: Lang }) {
+  return (
+    <span className="mode">
+      <ModeIcon mode={mode} />
+      {STRINGS[lang].mode[mode]}
+    </span>
+  );
+}
 
 const DAY_START = 8 * 60; // 08:00
 const DAY_END = 17 * 60; // 17:00
@@ -104,10 +108,10 @@ export function Schedule({
 
       {isToday ? (
         <ul className="legend" aria-label={S.legend}>
-          {[...new Map(patients.map((p) => [p.visitType.en, p])).values()].map((p) => (
-            <li key={p.visitType.en} className={`vt-${toneOf(p)}`}>
+          {KINDS.map((k) => (
+            <li key={k} className={`kind-${k}`}>
               <span className="vt-dot" aria-hidden="true" />
-              {p.visitType[lang]}
+              {S.kindLong[k]}
             </li>
           ))}
         </ul>
@@ -169,13 +173,13 @@ function CalendarDay({
             const active = p.id === currentId;
             return (
               <li key={p.id} className="cal-event-wrap" style={{ top: (start - DAY_START) * PX_PER_MIN, height: p.durationMin * PX_PER_MIN - 4 }}>
-                <button type="button" className={`cal-event vt-${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
+                <button type="button" className={`cal-event ${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
                   <span className="cal-time mono">
                     {p.time}–{toHHMM(end)}
                   </span>
                   <span className="cal-name">{p.name}</span>
                   <span className="cal-meta">
-                    {ageOn(p.dob, today)} {S.years} · {S.sexShort(p.sex)} · {p.visitType[lang]} · {p.specialty[lang]}
+                    <span className="cal-kind">{S.kind[p.visit.kind]}</span> · <Mode mode={p.visit.mode} lang={lang} /> · {ageOn(p.dob, today)} {S.years} · {S.sexShort(p.sex)} · {p.visit.reason[lang]}
                   </span>
                   {active ? <span className="tag tag-current">{S.current}</span> : null}
                 </button>
@@ -204,7 +208,7 @@ function ListDay({ lang, patients, onSelect, currentId }: { lang: Lang; patients
         const active = p.id === currentId;
         return (
           <div key={p.id} role="listitem">
-            <button type="button" className={`plist-row vt-${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
+            <button type="button" className={`plist-row ${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
               <span className="mono plist-time">
                 {p.time}–{toHHMM(toMin(p.time) + p.durationMin)}
               </span>
@@ -217,9 +221,13 @@ function ListDay({ lang, patients, onSelect, currentId }: { lang: Lang; patients
               <span className="plist-visit">
                 <span className="vt-label">
                   <span className="vt-dot" aria-hidden="true" />
-                  {p.visitType[lang]}
+                  {S.kind[p.visit.kind]}
+                  <span className="muted small">
+                    {' '}
+                    · <Mode mode={p.visit.mode} lang={lang} />
+                  </span>
                 </span>
-                <span className="muted small">{p.specialty[lang]}</span>
+                <span className="muted small">{p.visit.reason[lang]}</span>
               </span>
               <span className="plist-docs mono">{docsFor(p.id).length}</span>
               <span className="plist-open">{active ? S.current : S.openSummary}</span>

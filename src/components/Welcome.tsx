@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { Lang } from '../data/types';
 import { STRINGS } from '../i18n';
 import { LangToggle } from './LangToggle';
@@ -7,7 +8,7 @@ const DEMO_USER = 'a.devries.demo';
 /** Shown as dots in a read-only text field, not a password input, so browsers never offer to save or autofill a real password. */
 const DEMO_PASSWORD_MASK = '••••••••••••';
 
-export function Welcome({ lang, setLang, onLogin }: { lang: Lang; setLang: (l: Lang) => void; onLogin: () => void }) {
+export function Welcome({ lang, setLang, onLogin, theme }: { lang: Lang; setLang: (l: Lang) => void; onLogin: () => void; theme: ReactNode }) {
   const S = STRINGS[lang];
   return (
     <div className="welcome">
@@ -16,7 +17,10 @@ export function Welcome({ lang, setLang, onLogin }: { lang: Lang; setLang: (l: L
           <LogoMark />
           <div className="brand-name">PreConsult</div>
         </div>
-        <LangToggle lang={lang} setLang={setLang} dark />
+        <div className="welcome-controls">
+          <LangToggle lang={lang} setLang={setLang} dark />
+          {theme}
+        </div>
       </header>
 
       <main className="welcome-main">

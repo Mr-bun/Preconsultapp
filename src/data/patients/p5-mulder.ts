@@ -13,7 +13,7 @@ export const mulder: PatientBundle = {
     mrn: 'SYN-04012',
     address: 'Kanaalweg 66, 3526 ZZ Utrecht',
     specialty: { nl: 'Vroege psychose', en: 'Early psychosis' },
-    visitType: { nl: 'Medicatie-evaluatie', en: 'Medication review' },
+    visit: { kind: 'followup', mode: 'video', reason: { nl: 'Driemaandelijkse evaluatie', en: 'Three-monthly review' } },
     time: '13:30',
     durationMin: 45,
     allergies: { nl: 'Geen bekend', en: 'None known' },

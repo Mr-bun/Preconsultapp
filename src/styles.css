@@ -1866,3 +1866,369 @@ li.hl {
 .schedule:not(.schedule-compact) {
   border-top: 3px solid var(--accent);
 }
+
+/* ---------- v0.6: standard appointment types ----------
+   Okabe-Ito colorblind-safe hues: reddish purple, blue, orange, bluish green.
+   --bar is the stripe and dot; --tone is text, tuned for 4.5:1 on its tint. */
+.kind-intake {
+  --bar: #cc79a7;
+  --tone: #9c2d69;
+  --tone-soft: #fcf0f6;
+  --tone-line: #ebc0d8;
+}
+.kind-followup {
+  --bar: #0072b2;
+  --tone: #005a8c;
+  --tone-soft: #e9f3fa;
+  --tone-line: #b3d4eb;
+}
+.kind-medication {
+  --bar: #e69f00;
+  --tone: #744b00;
+  --tone-soft: #fff6df;
+  --tone-line: #f0cf80;
+}
+.kind-consultation {
+  --bar: #009e73;
+  --tone: #00634a;
+  --tone-soft: #e5f6f0;
+  --tone-line: #9fd8c4;
+}
+.cal-event {
+  border-left-color: var(--bar, var(--tone));
+}
+.cal-event:hover {
+  border-color: var(--tone-line);
+  border-left-color: var(--bar, var(--tone));
+}
+.vt-dot {
+  background: var(--bar, var(--tone));
+}
+.plist-row {
+  box-shadow: inset 4px 0 0 var(--bar, transparent);
+}
+.legend li .vt-dot {
+  width: 9px;
+  height: 9px;
+}
+.cal-kind {
+  font-weight: 600;
+  color: var(--tone);
+}
+.mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: -1px;
+}
+.mode-icon {
+  opacity: 0.85;
+}
+/* The open patient is outlined, not filled, so every type keeps its color and text stays legible. */
+.cal-event.is-current {
+  background: var(--tone-soft);
+  border-color: var(--bar);
+  box-shadow: 0 0 0 2px var(--bar);
+}
+.cal-event.is-current .cal-name {
+  color: var(--ink);
+}
+.cal-event.is-current .cal-meta {
+  color: var(--ink-2);
+}
+.cal-event.is-current .cal-time {
+  color: var(--ink-3);
+}
+.tag-current {
+  background: var(--bar);
+  color: #111;
+}
+
+/* Theme toggle */
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #3a4744;
+  background: #24302d;
+  color: #dde4e1;
+  cursor: pointer;
+}
+.theme-btn:hover {
+  border-color: #6c7c78;
+}
+.welcome-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Dark mode ----------
+   Same structure, darker surfaces, lighter text tones. Source documents keep their light paper look. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ink: #e6ecea;
+  --ink-2: #c3ccc9;
+  --ink-3: #9eaba7;
+  --line: #2e3936;
+  --line-2: #27312e;
+  --bg: #0f1514;
+  --card: #172020;
+  --accent: #74bad4;
+  --accent-ink: #bfe1ee;
+  --accent-soft: #1b3440;
+  --accent-line: #3f7790;
+  --risk: #f5a59c;
+  --risk-soft: #2c1816;
+  --risk-line: #5e2b26;
+  --warn-ink: #f3d39a;
+  --warn-soft: #2a2312;
+  --warn-line: #5a4416;
+}
+[data-theme='dark'] .topbar,
+[data-theme='dark'] .welcome {
+  background: #0a0f0e;
+}
+[data-theme='dark'] .topbar {
+  border-bottom: 1px solid var(--line);
+}
+[data-theme='dark'] .seg {
+  background: #222c2a;
+}
+[data-theme='dark'] .seg-dark {
+  background: #1a2321;
+}
+[data-theme='dark'] .seg button {
+  color: var(--ink-2);
+}
+[data-theme='dark'] .seg button[aria-pressed='true'] {
+  background: #e6ecea;
+  color: #0f1514;
+}
+[data-theme='dark'] .theme-btn {
+  background: #1a2321;
+  border-color: #33403d;
+}
+[data-theme='dark'] .btn-primary,
+[data-theme='dark'] .bubble-user {
+  background: #2b7a99;
+  color: #fff;
+}
+[data-theme='dark'] .btn-outline {
+  background: transparent;
+  color: var(--accent-ink);
+  border-color: var(--accent-line);
+}
+[data-theme='dark'] .btn-ghost {
+  color: var(--accent-ink);
+}
+[data-theme='dark'] .btn-ghost:disabled {
+  color: var(--ink-3);
+}
+[data-theme='dark'] .subbar,
+[data-theme='dark'] .drawer-bar,
+[data-theme='dark'] .switcher {
+  background: var(--card);
+  border-color: var(--line);
+}
+[data-theme='dark'] .icon-btn {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+[data-theme='dark'] .tabs {
+  background: #1d2725;
+}
+[data-theme='dark'] .tab {
+  color: var(--ink-2);
+}
+[data-theme='dark'] .tab[aria-pressed='true'] {
+  background: #293431;
+  color: var(--accent-ink);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+[data-theme='dark'] .tile-btn {
+  background: #1b2428;
+  border-color: #33404a;
+}
+[data-theme='dark'] .tile-btn .tile-k {
+  color: #a9b8cc;
+}
+[data-theme='dark'] .tile-allergy {
+  background: var(--risk-soft);
+  border-color: var(--risk-line);
+}
+[data-theme='dark'] .tile-allergy .tile-v {
+  color: #ffc2ba;
+}
+[data-theme='dark'] .chip {
+  background: #152a31;
+  border-color: #2f5361;
+  color: var(--accent-ink);
+}
+[data-theme='dark'] .chip:hover,
+[data-theme='dark'] .docrow:hover,
+[data-theme='dark'] .plist-row:hover,
+[data-theme='dark'] .suggest-btn:hover {
+  background: #1d3038;
+}
+[data-theme='dark'] .tag {
+  background: #3a1f1c;
+  color: #ffbdb4;
+}
+[data-theme='dark'] .flag {
+  background: #3a2412;
+  color: #ffc58f;
+}
+[data-theme='dark'] .ask-log {
+  background: #131b1a;
+}
+[data-theme='dark'] .bubble-answer {
+  background: var(--card);
+  border-color: var(--line);
+}
+[data-theme='dark'] .bubble-out {
+  background: var(--warn-soft);
+  border-color: var(--warn-line);
+}
+[data-theme='dark'] .tag-out {
+  background: #4a3a14;
+  color: var(--warn-ink);
+}
+[data-theme='dark'] .bubble-note {
+  background: #222c2a;
+  color: var(--ink-2);
+}
+[data-theme='dark'] .suggest-btn {
+  background: var(--card);
+  border-color: #2f5361;
+  color: var(--accent-ink);
+}
+[data-theme='dark'] .ask textarea {
+  background: #0f1514;
+  color: var(--ink);
+  border-color: #3a4542;
+}
+[data-theme='dark'] .drawer {
+  background: #0c1211;
+}
+[data-theme='dark'] .drawer-note {
+  background: #152a31;
+  color: var(--accent-ink);
+  border-color: var(--line);
+}
+[data-theme='dark'] .drawer-backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+[data-theme='dark'] .confirm {
+  background: #2c1816;
+  border-color: var(--risk-line);
+}
+[data-theme='dark'] .confirm-text {
+  color: #ffd2cc;
+}
+[data-theme='dark'] .btn-outline-danger {
+  color: #ffb4ab;
+  border-color: #e0675b;
+}
+[data-theme='dark'] .cal-now {
+  border-top-color: #ff8a4c;
+}
+[data-theme='dark'] .cal-now::before {
+  background: #ff8a4c;
+}
+[data-theme='dark'] .cal-now-label {
+  color: #ff9a62;
+  background: var(--card);
+}
+[data-theme='dark'] .disclaimer {
+  background: #152a31;
+  border-color: #2e4d59;
+  color: var(--accent-ink);
+}
+[data-theme='dark'] .disclaimer .icon {
+  color: var(--accent);
+}
+[data-theme='dark'] .login {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+[data-theme='dark'] .locked-input input {
+  background: #0f1514;
+  border-color: #3a4542;
+  color: var(--ink-2);
+}
+[data-theme='dark'] .tag-current {
+  color: #0a0f0e;
+}
+
+/* Section tones in dark: light text on deep tints */
+[data-theme='dark'] .tone-slate {
+  --tone: #b6c1ce;
+  --tone-soft: #1d242e;
+  --tone-line: #3a4452;
+}
+[data-theme='dark'] .tone-teal {
+  --tone: #62d1c3;
+  --tone-soft: #11302c;
+  --tone-line: #1f5a52;
+}
+[data-theme='dark'] .tone-blue {
+  --tone: #93b4ff;
+  --tone-soft: #172240;
+  --tone-line: #2f4a85;
+}
+[data-theme='dark'] .tone-red {
+  --tone: #ff9f95;
+  --tone-soft: #2e1716;
+  --tone-line: #6b2b27;
+}
+[data-theme='dark'] .tone-amber {
+  --tone: #f2c46b;
+  --tone-soft: #2b2210;
+  --tone-line: #6b5216;
+}
+[data-theme='dark'] .tone-violet {
+  --tone: #c6abff;
+  --tone-soft: #231b3a;
+  --tone-line: #4d3a85;
+}
+[data-theme='dark'] .tone-green {
+  --tone: #80da9e;
+  --tone-soft: #13301d;
+  --tone-line: #2a6a40;
+}
+[data-theme='dark'] .tone-indigo {
+  --tone: #abb2ff;
+  --tone-soft: #1c1e3c;
+  --tone-line: #3c4185;
+}
+[data-theme='dark'] .tone-orange {
+  --tone: #ffb07a;
+  --tone-soft: #2e1d0e;
+  --tone-line: #7a4317;
+}
+[data-theme='dark'] .kind-intake {
+  --tone: #f2a9d1;
+  --tone-soft: #2f1c27;
+  --tone-line: #6b3a55;
+}
+[data-theme='dark'] .kind-followup {
+  --bar: #3ba0dc;
+  --tone: #8cc9f2;
+  --tone-soft: #12283a;
+  --tone-line: #24527a;
+}
+[data-theme='dark'] .kind-medication {
+  --tone: #f5c45a;
+  --tone-soft: #2e2510;
+  --tone-line: #6b5216;
+}
+[data-theme='dark'] .kind-consultation {
+  --bar: #19b989;
+  --tone: #6ad8b5;
+  --tone-soft: #0f2d26;
+  --tone-line: #1f6a55;
+}

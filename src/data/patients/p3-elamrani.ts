@@ -13,7 +13,7 @@ export const elAmrani: PatientBundle = {
     mrn: 'SYN-03562',
     address: 'Zonnebloemlaan 8, 3531 ZZ Utrecht',
     specialty: { nl: 'Psychiatrie', en: 'Psychiatry' },
-    visitType: { nl: 'Intake', en: 'Intake' },
+    visit: { kind: 'intake', mode: 'onsite', reason: { nl: 'Diagnostiek en behandeling na verkeersongeval', en: 'Assessment after road traffic collision' } },
     time: '10:40',
     durationMin: 45,
     allergies: { nl: 'Geen bekend', en: 'None known' },

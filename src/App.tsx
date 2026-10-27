@@ -9,6 +9,7 @@ import { AskPanel } from './components/AskPanel';
 import { DocDrawer } from './components/DocDrawer';
 import { LangToggle } from './components/LangToggle';
 import { Welcome } from './components/Welcome';
+import { ThemeToggle, useTheme } from './components/ThemeToggle';
 import { Schedule, type ScheduleView } from './components/Schedule';
 import { CalendarIcon, CheckCircle, ChevronIcon, CloseIcon, LogoMark, UsersIcon } from './components/Icons';
 
@@ -56,6 +57,7 @@ export default function App() {
   const [view, setView] = useState<ScheduleView>('calendar');
   const [switcher, setSwitcher] = useState(false);
 
+  const [theme, toggleTheme] = useTheme();
   const S = STRINGS[lang];
 
   const setLang = useCallback((l: Lang) => {
@@ -92,7 +94,7 @@ export default function App() {
     window.location.hash = '';
   }
 
-  if (!loggedIn) return <Welcome lang={lang} setLang={setLang} onLogin={login} />;
+  if (!loggedIn) return <Welcome lang={lang} setLang={setLang} onLogin={login} theme={<ThemeToggle theme={theme} onToggle={toggleTheme} lang={lang} />} />;
 
   const patient = route.name === 'patient' ? PATIENTS.find((p) => p.id === route.id) : undefined;
   const selectPatient = (p: Patient) => go({ name: 'patient', id: p.id });
@@ -109,6 +111,7 @@ export default function App() {
         </div>
         <div className="topbar-actions">
           <LangToggle lang={lang} setLang={setLang} dark />
+          <ThemeToggle theme={theme} onToggle={toggleTheme} lang={lang} />
           <div className="user">
             <div className="user-name">{S.demoUserName}</div>
             <div className="user-role">{S.demoUserRole}</div>
@@ -194,7 +197,7 @@ function PatientPage({
           <span className="strong">{p.name}</span>
           <span className="muted small">
             {' '}
-            · {p.time} · {p.visitType[lang]}
+            · {p.time} · {S.kind[p.visit.kind]} · {S.mode[p.visit.mode]}
           </span>
         </div>
         {erasedAt ? null : (

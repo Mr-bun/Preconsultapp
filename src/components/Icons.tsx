@@ -97,3 +97,45 @@ export function UsersIcon() {
     </svg>
   );
 }
+
+export function ModeIcon({ mode }: { mode: 'onsite' | 'video' | 'phone' }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="icon mode-icon">
+      {mode === 'onsite' ? (
+        <>
+          <path d="M4 21V8l8-5 8 5v13" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+          <path d="M9 21v-6h6v6" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        </>
+      ) : mode === 'video' ? (
+        <>
+          <rect x="2.5" y="6" width="13" height="12" rx="2" stroke="currentColor" strokeWidth="2" />
+          <path d="M15.5 10.5l6-3.5v10l-6-3.5" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        </>
+      ) : (
+        <path
+          d="M6.6 3.5h3l1.5 4.2-2.1 1.4a12 12 0 0 0 5.9 5.9l1.4-2.1 4.2 1.5v3c0 1.1-.9 2.1-2 2.1A16.6 16.6 0 0 1 4.5 5.6c0-1.1 1-2.1 2.1-2.1z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      )}
+    </svg>
+  );
+}
+
+export function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="icon">
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function MoonIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="icon">
+      <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+    </svg>
+  );
+}
