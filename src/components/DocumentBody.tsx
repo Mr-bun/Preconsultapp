@@ -138,7 +138,7 @@ function BlockView({ b, lang, highlight }: { b: Block; lang: Lang; highlight?: s
       return (
         <div className="signal">
           {b.phases.map((p, i) => (
-            <Passage key={i} as="div" id={p.id} highlight={highlight} className={`signal-phase tone-${p.tone}`}>
+            <Passage key={i} as="div" id={p.id} highlight={highlight} className={`signal-phase phase-${p.tone}`}>
               <div className="signal-title">{p.title[lang]}</div>
               <div className="signal-grid">
                 <span className="signal-k">{L.signs[lang]}</span>

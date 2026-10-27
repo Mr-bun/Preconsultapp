@@ -19,28 +19,32 @@ export const smit: PatientBundle = {
     allergies: { nl: 'Haloperidol (ernstige rigiditeit, 2025)', en: 'Haloperidol (severe rigidity, 2025)' },
     reason: {
       t: {
-        nl: 'Beoordeling van nieuwe visuele hallucinaties en wisselende alertheid. De neuroloog vraagt onderscheid te maken tussen psychose bij de ziekte van Parkinson, dementie en delier.',
-        en: 'Assessment of new visual hallucinations and day-to-day changes in alertness. The neurologist asks to differentiate psychosis in Parkinson disease, dementia and delirium.',
+        nl: 'Beoordeling van nieuwe visuele hallucinaties en wisselende alertheid. De klinisch geriater vraagt onderscheid te maken tussen Charles Bonnet-syndroom bij maculadegeneratie, dementie en delier.',
+        en: 'Assessment of new visual hallucinations and day-to-day changes in alertness. The geriatrician asks to differentiate Charles Bonnet syndrome in macular degeneration, dementia and delirium.',
       },
-      refs: [{ doc: 'p4-neuro', at: 'question' }],
+      refs: [{ doc: 'p4-ger', at: 'question' }],
     },
     measures: [
-      { label: 'MoCA', value: '21/30 (was 25)', date: '2026-10-07', ref: { doc: 'p4-neuro', at: 'exam' } },
-      { label: { nl: 'RR liggend / staand', en: 'BP lying / standing' }, value: '138/80 · 112/70', date: '2026-10-07', ref: { doc: 'p4-neuro', at: 'exam' } },
+      { label: 'MoCA', value: '21/30 (was 25)', date: '2026-10-07', ref: { doc: 'p4-ger', at: 'exam' } },
+      { label: { nl: 'RR liggend / staand', en: 'BP lying / standing' }, value: '138/80 · 112/70', date: '2026-10-07', ref: { doc: 'p4-ger', at: 'exam' } },
       { label: { nl: 'Natrium', en: 'Sodium' }, value: '133 mmol/L', date: '2026-10-07', ref: { doc: 'p4-lab', at: 'na' } },
     ],
     conditions: [
-      { nl: 'Ziekte van Parkinson (2017)', en: 'Parkinson disease (2017)' },
+      { nl: 'Maculadegeneratie, beide ogen (2019)', en: 'Macular degeneration, both eyes (2019)' },
+      { nl: 'Lichte cognitieve stoornis (2024)', en: 'Mild cognitive impairment (2024)' },
+      { nl: 'Hypertensie', en: 'Hypertension' },
       { nl: 'Overactieve blaas', en: 'Overactive bladder' },
-      { nl: 'Orthostatische hypotensie', en: 'Orthostatic hypotension' },
       { nl: 'Woont met echtgenote', en: 'Lives with wife' },
     ],
     summary: [
       {
-        t: { nl: 'Ziekte van Parkinson sinds 2017; gebruikt levodopa/carbidopa en rasagiline.', en: 'Parkinson disease since 2017, on levodopa/carbidopa and rasagiline.' },
+        t: {
+          nl: 'Maculadegeneratie aan beide ogen sinds 2019, behandeld met injecties door de oogarts; sterk verminderd zicht. Lichte cognitieve stoornis vastgesteld in 2024.',
+          en: 'Macular degeneration in both eyes since 2019, treated with eye injections; markedly reduced vision. Mild cognitive impairment diagnosed in 2024.',
+        },
         refs: [
-          { doc: 'p4-neuro', at: 'hx' },
-          { doc: 'p4-meds', at: 'levo' },
+          { doc: 'p4-ger', at: 'hx' },
+          { doc: 'p4-meds', at: 'afli' },
         ],
       },
       {
@@ -48,9 +52,16 @@ export const smit: PatientBundle = {
           nl: 'Zijn echtgenote meldt sinds ongeveer zes weken visuele hallucinaties (mensen en dieren in de kamer) en een alertheid die per dag wisselt.',
           en: 'His wife reports about six weeks of visual hallucinations (people and animals in the room) and alertness that varies from day to day.',
         },
-        refs: [{ doc: 'p4-neuro', at: 'hx' }],
+        refs: [{ doc: 'p4-ger', at: 'hx' }],
       },
-      { t: { nl: 'MoCA 21/30, gedaald van 25/30 in oktober 2025.', en: 'MoCA 21/30, down from 25/30 in October 2025.' }, refs: [{ doc: 'p4-neuro', at: 'exam' }] },
+      {
+        t: {
+          nl: 'Hij weet volgens de klinisch geriater meestal dat de beelden niet echt zijn.',
+          en: 'According to the geriatrician, he usually knows the images are not real.',
+        },
+        refs: [{ doc: 'p4-ger', at: 'insight' }],
+      },
+      { t: { nl: 'MoCA 21/30, gedaald van 25/30 in oktober 2025.', en: 'MoCA 21/30, down from 25/30 in October 2025.' }, refs: [{ doc: 'p4-ger', at: 'exam' }] },
       {
         t: {
           nl: 'Delier tijdens een opname wegens pneumonie in november 2025; ernstige rigiditeit na haloperidol, geregistreerd als allergie.',
@@ -70,7 +81,7 @@ export const smit: PatientBundle = {
         ],
       },
     ],
-    risk: [{ who: { nl: 'Echtgenote, via neuroloog', en: 'Wife, via neurologist' }, kind: { nl: 'Heteroanamnese', en: 'Collateral' }, ref: { doc: 'p4-neuro', at: 'risk' } }],
+    risk: [{ who: { nl: 'Echtgenote, via klinisch geriater', en: 'Wife, via geriatrician' }, kind: { nl: 'Heteroanamnese', en: 'Collateral' }, ref: { doc: 'p4-ger', at: 'risk' } }],
     flags: [
       {
         t: {
@@ -79,27 +90,34 @@ export const smit: PatientBundle = {
         },
         refs: [
           { doc: 'p4-gp', at: 'p' },
-          { doc: 'p4-neuro', at: 'hx' },
+          { doc: 'p4-ger', at: 'hx' },
         ],
       },
       {
         t: {
-          nl: 'Eerder gestopt wegens bijwerkingen: amantadine (verwardheid, 2021) en ropinirol (impulscontroleklachten, 2024).',
-          en: 'Earlier medicines stopped for side effects: amantadine (confusion, 2021) and ropinirole (impulse control symptoms, 2024).',
+          nl: 'Eerder gestopt wegens bijwerkingen: amitriptyline (verwardheid, 2022) en zopiclon (nachtelijke verwardheid, 2024).',
+          en: 'Earlier medicines stopped for side effects: amitriptyline (confusion, 2022) and zopiclone (night-time confusion, 2024).',
         },
         refs: [
-          { doc: 'p4-meds', at: 'aman' },
-          { doc: 'p4-meds', at: 'ropi' },
+          { doc: 'p4-meds', at: 'ami' },
+          { doc: 'p4-meds', at: 'zop' },
         ],
+      },
+      {
+        t: {
+          nl: 'Laatste oogheelkundige controle staat niet in het dossier; de injecties lopen elke 8 weken via de oogarts.',
+          en: 'The most recent ophthalmology review is not in the record; injections continue every 8 weeks via the ophthalmologist.',
+        },
+        refs: [{ doc: 'p4-meds', at: 'afli' }],
       },
     ],
     visits: [
       {
         date: '2026-10-07',
-        who: { nl: 'Neurologie', en: 'Neurology' },
+        who: { nl: 'Geriatrie', en: 'Geriatric medicine' },
         reason: { nl: 'Hallucinaties en wisselende alertheid', en: 'Hallucinations and fluctuating alertness' },
-        action: { nl: 'Levodopa ongewijzigd; MoCA 21; verwijzing ouderenpsychiatrie', en: 'Levodopa unchanged; MoCA 21; referral to old-age psychiatry' },
-        ref: { doc: 'p4-neuro' },
+        action: { nl: 'MoCA 21; lab; verwijzing ouderenpsychiatrie', en: 'MoCA 21; bloods; referral to old-age psychiatry' },
+        ref: { doc: 'p4-ger' },
       },
       {
         date: '2026-06-02',
@@ -118,19 +136,19 @@ export const smit: PatientBundle = {
     ],
     meds: {
       current: [
-        { name: { nl: 'Levodopa/carbidopa', en: 'Levodopa/carbidopa' }, dose: { nl: '100/25 mg 3 dd', en: '100/25 mg TID' } },
-        { name: { nl: 'Rasagiline', en: 'Rasagiline' }, dose: { nl: '1 mg 1 dd', en: '1 mg OD' } },
+        { name: { nl: 'Amlodipine', en: 'Amlodipine' }, dose: { nl: '5 mg 1 dd', en: '5 mg OD' } },
         { name: { nl: 'Oxybutynine', en: 'Oxybutynin' }, dose: { nl: '5 mg 2 dd', en: '5 mg BID' } },
         { name: { nl: 'Macrogol', en: 'Macrogol' }, dose: { nl: '1 sachet 1 dd', en: '1 sachet OD' } },
+        { name: { nl: 'Aflibercept (oogarts)', en: 'Aflibercept (ophthalmologist)' }, dose: { nl: 'injectie in het oog, elke 8 weken', en: 'eye injection, every 8 weeks' } },
       ],
       past: [
-        { name: { nl: 'Ropinirol 4 mg', en: 'Ropinirole 4 mg' }, when: { nl: '2018 tot 2024', en: '2018 to 2024' }, why: { nl: 'impulscontroleklachten', en: 'impulse control symptoms' } },
-        { name: { nl: 'Amantadine 100 mg', en: 'Amantadine 100 mg' }, when: { nl: '2021', en: '2021' }, why: { nl: 'verwardheid', en: 'confusion' } },
+        { name: { nl: 'Amitriptyline 10 mg', en: 'Amitriptyline 10 mg' }, when: { nl: '2021 tot 2022', en: '2021 to 2022' }, why: { nl: 'verwardheid', en: 'confusion' } },
+        { name: { nl: 'Zopiclon 7,5 mg', en: 'Zopiclone 7.5 mg' }, when: { nl: '2024', en: '2024' }, why: { nl: 'nachtelijke verwardheid', en: 'night-time confusion' } },
       ],
       ref: { doc: 'p4-meds' },
     },
     tests: [
-      { name: 'MoCA', value: '21/30', range: '≥ 26', date: '2026-10-07', status: 'low', ref: { doc: 'p4-neuro', at: 'exam' } },
+      { name: 'MoCA', value: '21/30', range: '≥ 26', date: '2026-10-07', status: 'low', ref: { doc: 'p4-ger', at: 'exam' } },
       { name: { nl: 'Natrium', en: 'Sodium' }, value: '133 mmol/L', range: '135 to 145', date: '2026-10-07', status: 'low', ref: { doc: 'p4-lab', at: 'na' } },
       { name: 'eGFR (CKD-EPI)', value: '58 mL/min/1.73m²', range: '> 60', date: '2026-10-07', status: 'low', ref: { doc: 'p4-lab', at: 'egfr' } },
       { name: 'CRP', value: '4 mg/L', range: '< 10', date: '2026-10-07', status: 'normal', ref: { doc: 'p4-lab', at: 'crp' } },
@@ -138,21 +156,22 @@ export const smit: PatientBundle = {
     ],
     gaps: [
       { nl: 'Geen urineonderzoek sinds het begin van de hallucinaties', en: 'No urinalysis since the hallucinations began' },
-      { nl: 'Geen beeldvorming van de hersenen sinds 2017', en: 'No brain imaging since 2017' },
+      { nl: 'Geen beeldvorming van de hersenen in het dossier', en: 'No brain imaging in the record' },
+      { nl: 'Recente oogheelkundige brief ontbreekt', en: 'No recent ophthalmology letter' },
       { nl: 'Slaapgedrag (bijvoorbeeld dromen naspelen) niet vastgelegd', en: 'Sleep behavior (for example acting out dreams) not documented' },
     ],
     qa: [
       {
         q: { nl: 'Tijdlijn van medicatiewijzigingen en begin van de klachten', en: 'Timeline of medication changes and symptom onset' },
         a: {
-          nl: '2 jun 2026: oxybutynine gestart.\nOngeveer eind aug 2026: begin hallucinaties (volgens echtgenote).\n7 okt 2026: controle neurologie, levodopa ongewijzigd.\nEerder: amantadine gestopt 2021 (verwardheid); ropinirol gestopt 2024 (impulscontroleklachten).',
-          en: '2 Jun 2026: oxybutynin started.\nAbout late Aug 2026: hallucinations begin (wife’s account).\n7 Oct 2026: neurology review, levodopa unchanged.\nEarlier: amantadine stopped 2021 (confusion); ropinirole stopped 2024 (impulse control symptoms).',
+          nl: '2 jun 2026: oxybutynine gestart.\nOngeveer eind aug 2026: begin hallucinaties (volgens echtgenote).\n7 okt 2026: beoordeling klinisch geriater.\nEerder: amitriptyline gestopt 2022 (verwardheid); zopiclon gestopt 2024 (nachtelijke verwardheid).',
+          en: '2 Jun 2026: oxybutynin started.\nAbout late Aug 2026: hallucinations begin (wife’s account).\n7 Oct 2026: geriatrician assessment.\nEarlier: amitriptyline stopped 2022 (confusion); zopiclone stopped 2024 (night-time confusion).',
         },
         refs: [
           { doc: 'p4-gp', at: 'p' },
-          { doc: 'p4-neuro', at: 'hx' },
-          { doc: 'p4-meds', at: 'aman' },
-          { doc: 'p4-meds', at: 'ropi' },
+          { doc: 'p4-ger', at: 'hx' },
+          { doc: 'p4-meds', at: 'ami' },
+          { doc: 'p4-meds', at: 'zop' },
         ],
       },
       {
@@ -180,15 +199,15 @@ export const smit: PatientBundle = {
 
   docs: [
     {
-      id: 'p4-neuro',
+      id: 'p4-ger',
       patient: P,
       layout: 'letter',
       date: '2026-10-07',
       type: { nl: 'Intercollegiale verwijzing', en: 'Internal referral' },
-      short: { nl: 'Verwijzing neuroloog', en: 'Neurology referral' },
+      short: { nl: 'Verwijzing geriater', en: 'Geriatrician referral' },
       org: 'wilgenhoek',
-      unit: { nl: 'Neurologie, polikliniek', en: 'Neurology, outpatient clinic' },
-      author: { name: 'dr. P. Kuipers', role: { nl: 'neuroloog', en: 'neurologist' } },
+      unit: { nl: 'Geriatrie, polikliniek', en: 'Geriatric medicine, outpatient clinic' },
+      author: { name: 'dr. P. Kuipers', role: { nl: 'klinisch geriater', en: 'geriatrician' } },
       to: { name: 'Ouderenpsychiatrie', org: 'Ziekenhuis Wilgenhoek', unit: { nl: 'Psychiatrie, polikliniek', en: 'Psychiatry, outpatient clinic' } },
       blocks: [
         { type: 'heading', text: { nl: 'Vraagstelling', en: 'Question' } },
@@ -196,8 +215,8 @@ export const smit: PatientBundle = {
           type: 'para',
           id: 'question',
           text: {
-            nl: 'Graag uw beoordeling van nieuwe visuele hallucinaties en wisselende alertheid bij een patiënt met de ziekte van Parkinson. Differentiaaldiagnose: psychose bij de ziekte van Parkinson, beginnende dementie, delier. Graag ook uw advies over de behandeling.',
-            en: 'Please assess new visual hallucinations and fluctuating alertness in a patient with Parkinson disease. Differential diagnosis: psychosis in Parkinson disease, emerging dementia, delirium. We would also value your advice on treatment.',
+            nl: 'Graag uw beoordeling van nieuwe visuele hallucinaties en wisselende alertheid. Differentiaaldiagnose: Charles Bonnet-syndroom bij maculadegeneratie, dementie (waaronder Lewy body-dementie) en delier. Graag ook uw advies over het verdere beleid.',
+            en: 'Please assess new visual hallucinations and fluctuating alertness. Differential diagnosis: Charles Bonnet syndrome in macular degeneration, dementia (including dementia with Lewy bodies) and delirium. We would also value your advice on further management.',
           },
         },
         { type: 'heading', text: { nl: 'Anamnese en heteroanamnese', en: 'History and collateral history' } },
@@ -205,8 +224,16 @@ export const smit: PatientBundle = {
           type: 'para',
           id: 'hx',
           text: {
-            nl: 'Bekend met de ziekte van Parkinson sinds 2017. Echtgenote vertelt dat hij sinds ongeveer zes weken mensen en dieren in de kamer ziet. Overdag wisselt zijn alertheid sterk: de ene dag helder, de andere dag suf en verward.',
-            en: 'Known with Parkinson disease since 2017. His wife reports that for about six weeks he has been seeing people and animals in the room. His alertness varies a lot during the day: clear one day, drowsy and confused the next.',
+            nl: 'Bekend met maculadegeneratie aan beide ogen sinds 2019, behandeld met injecties door de oogarts, en met een lichte cognitieve stoornis sinds 2024. Echtgenote vertelt dat hij sinds ongeveer zes weken mensen en dieren in de kamer ziet. Overdag wisselt zijn alertheid sterk: de ene dag helder, de andere dag suf en verward.',
+            en: 'Known with macular degeneration in both eyes since 2019, treated with injections by the ophthalmologist, and with mild cognitive impairment since 2024. His wife reports that for about six weeks he has been seeing people and animals in the room. His alertness varies a lot during the day: clear one day, drowsy and confused the next.',
+          },
+        },
+        {
+          type: 'para',
+          id: 'insight',
+          text: {
+            nl: 'Patiënt zegt zelf meestal te weten dat de beelden niet echt zijn, maar op slechte dagen twijfelt hij.',
+            en: 'The patient says he usually knows the images are not real, but on bad days he is unsure.',
           },
         },
         {
@@ -222,8 +249,8 @@ export const smit: PatientBundle = {
           type: 'para',
           id: 'exam',
           text: {
-            nl: 'Hypomimie, rigiditeit links meer dan rechts, bradykinesie, geen rusttremor. RR liggend 138/80, staand na 3 minuten 112/70 mmHg. MoCA 21/30 (oktober 2025: 25/30).',
-            en: 'Hypomimia, rigidity left more than right, bradykinesia, no resting tremor. BP lying 138/80, standing after 3 minutes 112/70 mmHg. MoCA 21/30 (October 2025: 25/30).',
+            nl: 'Alert tijdens het gesprek, aandacht wisselend. Geen extrapiramidale verschijnselen, geen tremor. Visus beiderzijds sterk verminderd. RR liggend 138/80, staand na 3 minuten 112/70 mmHg. MoCA 21/30 (oktober 2025: 25/30), aangepast afgenomen in verband met slechtziendheid.',
+            en: 'Alert during the interview, variable attention. No extrapyramidal signs, no tremor. Visual acuity markedly reduced in both eyes. BP lying 138/80, standing after 3 minutes 112/70 mmHg. MoCA 21/30 (October 2025: 25/30), adapted for visual impairment.',
           },
         },
         { type: 'heading', text: { nl: 'Aanvullend onderzoek', en: 'Investigations' } },
@@ -239,10 +266,10 @@ export const smit: PatientBundle = {
         {
           type: 'list',
           items: [
-            { text: { nl: 'Levodopa/carbidopa 100/25 mg, 3 x per dag 1 tablet', en: 'Levodopa/carbidopa 100/25 mg, 1 tablet three times daily' } },
-            { text: { nl: 'Rasagiline 1 mg, 1 x per dag 1 tablet', en: 'Rasagiline 1 mg, 1 tablet once daily' } },
+            { text: { nl: 'Amlodipine 5 mg, 1 x per dag 1 tablet', en: 'Amlodipine 5 mg, 1 tablet once daily' } },
             { text: { nl: 'Oxybutynine 5 mg, 2 x per dag 1 tablet (gestart door huisarts, juni 2026)', en: 'Oxybutynin 5 mg, 1 tablet twice daily (started by GP, June 2026)' } },
             { text: { nl: 'Macrogol/elektrolyten, 1 x per dag 1 sachet', en: 'Macrogol/electrolytes, 1 sachet once daily' } },
+            { text: { nl: 'Aflibercept, injectie in het oog elke 8 weken (oogarts)', en: 'Aflibercept, eye injection every 8 weeks (ophthalmologist)' } },
           ],
         },
         { type: 'heading', text: { nl: 'Allergieën', en: 'Allergies' } },
@@ -251,8 +278,8 @@ export const smit: PatientBundle = {
         {
           type: 'para',
           text: {
-            nl: 'Levodopa vooralsnog ongewijzigd. Patiënt en echtgenote zijn op de hoogte van deze verwijzing.',
-            en: 'Levodopa unchanged for now. The patient and his wife know about this referral.',
+            nl: 'Medicatie vooralsnog ongewijzigd. Patiënt en echtgenote zijn op de hoogte van deze verwijzing.',
+            en: 'Medication unchanged for now. The patient and his wife know about this referral.',
           },
         },
       ],
@@ -267,7 +294,7 @@ export const smit: PatientBundle = {
       short: { nl: 'Labuitslagen', en: 'Lab results' },
       org: 'wilgenhoek',
       unit: { nl: 'Klinisch Chemisch Laboratorium', en: 'Clinical Chemistry Laboratory' },
-      author: { name: 'dr. P. Kuipers', role: { nl: 'neuroloog (aanvrager)', en: 'neurologist (requester)' } },
+      author: { name: 'dr. P. Kuipers', role: { nl: 'klinisch geriater (aanvrager)', en: 'geriatrician (requester)' } },
       blocks: [
         {
           type: 'fields',
@@ -331,8 +358,8 @@ export const smit: PatientBundle = {
           type: 'para',
           id: 'halo',
           text: {
-            nl: 'Binnen 24 uur ernstige rigiditeit en verminderde mobiliteit, passend bij overgevoeligheid voor antipsychotica bij de ziekte van Parkinson. Haloperidol gestaakt; herstel in vier dagen. Haloperidol is als allergie geregistreerd.',
-            en: 'Within 24 hours severe rigidity and reduced mobility, consistent with antipsychotic sensitivity in Parkinson disease. Haloperidol stopped; recovered over four days. Haloperidol is recorded as an allergy.',
+            nl: 'Binnen 24 uur ernstige rigiditeit en verminderde mobiliteit, passend bij een ernstige extrapiramidale reactie. Haloperidol gestaakt; herstel in vier dagen. Haloperidol is als allergie geregistreerd.',
+            en: 'Within 24 hours severe rigidity and reduced mobility, consistent with a severe extrapyramidal reaction. Haloperidol stopped; recovered over four days. Haloperidol is recorded as an allergy.',
           },
         },
         { type: 'heading', text: { nl: 'Ontslagdiagnosen', en: 'Discharge diagnoses' } },
@@ -341,7 +368,7 @@ export const smit: PatientBundle = {
           items: [
             { text: { nl: 'Pneumonie rechter onderkwab, hersteld', en: 'Right lower lobe pneumonia, resolved' } },
             { text: { nl: 'Delier bij infectie, hersteld', en: 'Delirium due to infection, resolved' } },
-            { text: { nl: 'Overgevoeligheid voor haloperidol', en: 'Haloperidol sensitivity' } },
+            { text: { nl: 'Ernstige extrapiramidale reactie op haloperidol', en: 'Severe extrapyramidal reaction to haloperidol' } },
           ],
         },
         { type: 'heading', text: { nl: 'Medicatie bij ontslag', en: 'Medication at discharge' } },
@@ -392,8 +419,8 @@ export const smit: PatientBundle = {
       type: { nl: 'Medicatieoverzicht', en: 'Medication overview' },
       short: { nl: 'Medicatieoverzicht', en: 'Medication overview' },
       org: 'wilgenhoek',
-      unit: { nl: 'Neurologie (geverifieerd met openbare apotheek)', en: 'Neurology (verified with community pharmacy)' },
-      author: { name: 'dr. P. Kuipers', role: { nl: 'neuroloog', en: 'neurologist' } },
+      unit: { nl: 'Geriatrie (geverifieerd met openbare apotheek)', en: 'Geriatric medicine (verified with community pharmacy)' },
+      author: { name: 'dr. P. Kuipers', role: { nl: 'klinisch geriater', en: 'geriatrician' } },
       blocks: [
         {
           type: 'table',
@@ -405,15 +432,12 @@ export const smit: PatientBundle = {
             { nl: 'Reden stop', en: 'Reason stopped' },
           ],
           rows: [
-            { id: 'levo', cells: ['Levodopa/carbidopa 100/25 mg', { nl: '3 x per dag 1 tablet', en: '1 tablet three times daily' }, '2017', '', ''] },
-            { id: 'rasa', cells: ['Rasagiline 1 mg', { nl: '1 x per dag 1 tablet', en: '1 tablet once daily' }, '2019', '', ''] },
+            { id: 'amlo', cells: ['Amlodipine 5 mg', { nl: '1 x per dag 1 tablet', en: '1 tablet once daily' }, '2018', '', ''] },
             { id: 'oxy', cells: ['Oxybutynine 5 mg', { nl: '2 x per dag 1 tablet', en: '1 tablet twice daily' }, '02-06-2026', '', ''] },
-            { id: 'macro', cells: ['Macrogol/elektrolyten', { nl: '1 x per dag 1 sachet', en: '1 sachet once daily' }, '2020', '', ''] },
-            {
-              id: 'ropi',
-              cells: ['Ropinirol 4 mg (retard)', { nl: '1 x per dag 1 tablet', en: '1 tablet once daily' }, '2018', '2024', { nl: 'Impulscontrolestoornis (koopdrang)', en: 'Impulse control disorder (compulsive buying)' }],
-            },
-            { id: 'aman', cells: ['Amantadine 100 mg', { nl: '2 x per dag 1 capsule', en: '1 capsule twice daily' }, '2021', '2021', { nl: 'Verwardheid', en: 'Confusion' }] },
+            { id: 'macro', cells: ['Macrogol/elektrolyten', { nl: '1 x per dag 1 sachet', en: '1 sachet once daily' }, '2023', '', ''] },
+            { id: 'afli', cells: [{ nl: 'Aflibercept, intravitreaal', en: 'Aflibercept, intravitreal' }, { nl: 'elke 8 weken, door oogarts', en: 'every 8 weeks, by ophthalmologist' }, '2019', '', ''] },
+            { id: 'ami', cells: ['Amitriptyline 10 mg', { nl: '1 x per dag 1 tablet voor de nacht', en: '1 tablet at night' }, '2021', '2022', { nl: 'Verwardheid', en: 'Confusion' }] },
+            { id: 'zop', cells: [{ nl: 'Zopiclon 7,5 mg', en: 'Zopiclone 7.5 mg' }, { nl: 'zo nodig 1 tablet voor de nacht', en: '1 tablet at night as needed' }, '2024', '2024', { nl: 'Nachtelijke verwardheid', en: 'Night-time confusion' }] },
           ],
         },
         { type: 'heading', text: { nl: 'Allergieën', en: 'Allergies' } },

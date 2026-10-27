@@ -97,7 +97,7 @@ const EN_TERMS: [string, string][] = [
   ['Kalium', 'Potassium'],
   ['Melatonine', 'Melatonin'],
   ['Oxybutynine', 'Oxybutynin'],
-  ['Ropinirol ', 'Ropinirole '],
+  ['Zopiclon ', 'Zopiclone '],
   ['Aripiprazol ', 'Aripiprazole '],
   [' sinds ', ' since '],
   ['SEH Wilgenhoek', 'ED Wilgenhoek'],

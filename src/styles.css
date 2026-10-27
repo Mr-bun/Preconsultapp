@@ -1117,13 +1117,13 @@ textarea:focus-visible {
   padding: 8px 12px;
   background: #fafafa;
 }
-.tone-green {
+.phase-green {
   border-color: #3b8a4a;
 }
-.tone-orange {
+.phase-orange {
   border-color: #d98a1c;
 }
-.tone-red {
+.phase-red {
   border-color: #b3261e;
 }
 .signal-title {
@@ -1683,4 +1683,186 @@ li.hl {
   position: absolute;
   top: 6px;
   right: 8px;
+}
+
+/* ---------- v0.5: quiet color system ----------
+   One accent per section and per appointment type. Text colors pass 4.5:1 on white and on their soft tint. */
+.tone-slate,
+.vt-slate {
+  --tone: #475467;
+  --tone-soft: #f2f4f7;
+  --tone-line: #d0d5dd;
+}
+.tone-teal,
+.vt-teal {
+  --tone: #0f766e;
+  --tone-soft: #ecf8f6;
+  --tone-line: #99d5cc;
+}
+.tone-blue,
+.vt-blue {
+  --tone: #1d4ed8;
+  --tone-soft: #eef3ff;
+  --tone-line: #b2c7f5;
+}
+.tone-red,
+.vt-red {
+  --tone: #b42318;
+  --tone-soft: #fef3f2;
+  --tone-line: #f4c1bc;
+}
+.tone-amber,
+.vt-amber {
+  --tone: #8a5a00;
+  --tone-soft: #fff9e8;
+  --tone-line: #f0d28a;
+}
+.tone-violet,
+.vt-violet {
+  --tone: #6d28d9;
+  --tone-soft: #f4f1ff;
+  --tone-line: #cfc2f7;
+}
+.tone-green,
+.vt-green {
+  --tone: #15803d;
+  --tone-soft: #edf9f1;
+  --tone-line: #a9dfbd;
+}
+.tone-indigo,
+.vt-indigo {
+  --tone: #4338ca;
+  --tone-soft: #eef0ff;
+  --tone-line: #c3c6f5;
+}
+.tone-orange,
+.vt-orange {
+  --tone: #b54708;
+  --tone-soft: #fff5ec;
+  --tone-line: #f5c9a6;
+}
+
+.card.tone {
+  border-top: 3px solid var(--tone);
+}
+.card.tone .eyebrow {
+  color: var(--tone);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card.tone .eyebrow::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+.card.tone-fill {
+  background: var(--tone-soft);
+  border-color: var(--tone-line);
+  border-top-color: var(--tone);
+}
+.card.tone-red .risk-item {
+  background: var(--tone-soft);
+  border-color: var(--tone-line);
+}
+.card.tone-violet .visit-who {
+  color: var(--tone);
+}
+.card.tone-green .med-row:first-of-type {
+  border-top-color: var(--tone-line);
+}
+.card.tone-blue .stmt,
+.card.tone-amber .stmt {
+  border-top-color: var(--line-2);
+}
+.card.tone-teal .lead {
+  color: var(--ink);
+}
+
+/* Patient tiles: the measures read as clickable data */
+.tile-btn {
+  background: #f6f8fb;
+  border-color: #d9e1ec;
+}
+.tile-btn .tile-k {
+  color: #3b4a63;
+}
+
+/* View tabs and segmented controls pick up the brand accent */
+.tab[aria-pressed='true'] {
+  color: var(--accent);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 -2px 0 var(--accent);
+}
+
+/* Calendar entries colored by appointment type */
+.cal-event {
+  border: 1px solid var(--tone-line, var(--accent-line));
+  border-left: 4px solid var(--tone, var(--accent));
+  background: var(--tone-soft, #f2f8fa);
+}
+.cal-event:hover {
+  background: var(--tone-soft, #f2f8fa);
+  border-color: var(--tone, var(--accent));
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+}
+.cal-event .cal-name {
+  color: var(--ink);
+}
+.cal-event.is-current {
+  background: var(--tone, var(--accent));
+  border-color: var(--tone, var(--accent));
+}
+.cal-event.is-current .cal-name {
+  color: #fff;
+}
+.cal-event.is-current .cal-meta,
+.cal-event.is-current .cal-time {
+  color: rgba(255, 255, 255, 0.86);
+}
+.vt-dot {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+.vt-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.plist-row {
+  box-shadow: inset 4px 0 0 var(--tone, transparent);
+}
+.plist-row.is-current {
+  background: var(--tone-soft, var(--accent-soft));
+}
+.legend {
+  list-style: none;
+  margin: -4px 0 16px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--tone);
+  background: var(--tone-soft);
+  border: 1px solid var(--tone-line);
+}
+
+/* Schedule card gets the brand accent strip */
+.schedule:not(.schedule-compact) {
+  border-top: 3px solid var(--accent);
 }

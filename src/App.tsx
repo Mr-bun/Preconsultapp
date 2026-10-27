@@ -106,8 +106,6 @@ export default function App() {
             <div className="brand-name">{S.brand}</div>
             <div className="brand-sub">{S.brandSub}</div>
           </div>
-          <span className="badge badge-synth">{S.synthetic}</span>
-          <span className="badge badge-ver">{S.version}</span>
         </div>
         <div className="topbar-actions">
           <LangToggle lang={lang} setLang={setLang} dark />

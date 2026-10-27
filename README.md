@@ -54,4 +54,4 @@ A citation is `{ doc: 'p1-ref', at: 'hpi' }`: a document id plus the id of a pas
 
 ## Scope
 
-v0.4 is summary-only by design: no recommendations, no confidence scores, no medication advice. See the architecture and compliance notes kept alongside this project for the regulatory reasoning (MDR, EU AI Act, GDPR).
+v0.5 is summary-only by design: no recommendations, no confidence scores, no medication advice. See the architecture and compliance notes kept alongside this project for the regulatory reasoning (MDR, EU AI Act, GDPR).

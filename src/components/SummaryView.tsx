@@ -9,7 +9,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
   const today = todayISO();
   return (
     <div className="stack">
-      <section className="card" aria-labelledby="glance">
+      <section className="card tone tone-slate" aria-labelledby="glance">
         <div className="glance-top">
           <div>
             <h2 className="eyebrow" id="glance">
@@ -57,7 +57,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </div>
       </section>
 
-      <section className="card card-accent" aria-labelledby="reason">
+      <section className="card tone tone-teal" aria-labelledby="reason">
         <h2 className="eyebrow" id="reason">
           {S.reason}
         </h2>
@@ -65,7 +65,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         <SourceChips refs={p.reason.refs} lang={lang} onOpen={onOpen} />
       </section>
 
-      <section className="card" aria-labelledby="summary">
+      <section className="card tone tone-blue" aria-labelledby="summary">
         <div className="card-head">
           <h2 className="eyebrow" id="summary">
             {S.summary}
@@ -82,9 +82,9 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </ul>
       </section>
 
-      <section className="card card-risk" aria-labelledby="risk">
+      <section className="card tone tone-red" aria-labelledby="risk">
         <div className="card-head">
-          <h2 className="eyebrow eyebrow-risk" id="risk">
+          <h2 className="eyebrow" id="risk">
             {S.riskHistory}
           </h2>
           <span className="muted small">{lang === 'nl' ? S.riskVerbatim : S.riskTranslated}</span>
@@ -114,7 +114,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </div>
       </section>
 
-      <section className="card" aria-labelledby="notable">
+      <section className="card tone tone-amber" aria-labelledby="notable">
         <h2 className="eyebrow" id="notable">
           {S.notable}
         </h2>
@@ -128,7 +128,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </ul>
       </section>
 
-      <section className="card" aria-labelledby="history">
+      <section className="card tone tone-violet" aria-labelledby="history">
         <h2 className="eyebrow" id="history">
           {S.previous}
         </h2>
@@ -153,7 +153,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </ol>
       </section>
 
-      <section className="card" aria-labelledby="meds">
+      <section className="card tone tone-green" aria-labelledby="meds">
         <div className="card-head">
           <h2 className="eyebrow" id="meds">
             {S.meds}
@@ -187,7 +187,7 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </div>
       </section>
 
-      <section className="card" aria-labelledby="tests">
+      <section className="card tone tone-indigo" aria-labelledby="tests">
         <h2 className="eyebrow" id="tests">
           {S.tests}
         </h2>
@@ -232,8 +232,8 @@ export function SummaryView({ p, lang, onOpen }: { p: Patient; lang: Lang; onOpe
         </div>
       </section>
 
-      <section className="card card-gaps" aria-labelledby="gaps">
-        <h2 className="eyebrow eyebrow-gaps" id="gaps">
+      <section className="card tone tone-orange tone-fill" aria-labelledby="gaps">
+        <h2 className="eyebrow" id="gaps">
           {S.notOnFile}
         </h2>
         <ul className="gaps">

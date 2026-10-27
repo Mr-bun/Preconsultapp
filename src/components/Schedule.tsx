@@ -7,6 +7,15 @@ import { CalendarIcon, ChevronIcon, ListIcon } from './Icons';
 
 export type ScheduleView = 'calendar' | 'list';
 
+/** One quiet color per appointment type, so the day reads at a glance. */
+const TYPE_TONE: Record<string, string> = {
+  Intake: 'violet',
+  'Medication review': 'blue',
+  'Lithium review': 'green',
+  Consult: 'teal',
+};
+const toneOf = (p: Patient) => TYPE_TONE[p.visitType.en] ?? 'slate';
+
 const DAY_START = 8 * 60; // 08:00
 const DAY_END = 17 * 60; // 17:00
 const PX_PER_MIN = 1.8;
@@ -93,6 +102,17 @@ export function Schedule({
         </div>
       </div>
 
+      {isToday ? (
+        <ul className="legend" aria-label={S.legend}>
+          {[...new Map(patients.map((p) => [p.visitType.en, p])).values()].map((p) => (
+            <li key={p.visitType.en} className={`vt-${toneOf(p)}`}>
+              <span className="vt-dot" aria-hidden="true" />
+              {p.visitType[lang]}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
       {!isToday ? (
         <div className="schedule-empty">
           <p>{S.noAppointments}</p>
@@ -149,7 +169,7 @@ function CalendarDay({
             const active = p.id === currentId;
             return (
               <li key={p.id} className="cal-event-wrap" style={{ top: (start - DAY_START) * PX_PER_MIN, height: p.durationMin * PX_PER_MIN - 4 }}>
-                <button type="button" className={`cal-event ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
+                <button type="button" className={`cal-event vt-${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
                   <span className="cal-time mono">
                     {p.time}–{toHHMM(end)}
                   </span>
@@ -184,7 +204,7 @@ function ListDay({ lang, patients, onSelect, currentId }: { lang: Lang; patients
         const active = p.id === currentId;
         return (
           <div key={p.id} role="listitem">
-            <button type="button" className={`plist-row ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
+            <button type="button" className={`plist-row vt-${toneOf(p)} ${active ? 'is-current' : ''}`} onClick={() => onSelect(p)} aria-current={active ? 'true' : undefined}>
               <span className="mono plist-time">
                 {p.time}–{toHHMM(toMin(p.time) + p.durationMin)}
               </span>
@@ -195,7 +215,10 @@ function ListDay({ lang, patients, onSelect, currentId }: { lang: Lang; patients
                 </span>
               </span>
               <span className="plist-visit">
-                <span>{p.visitType[lang]}</span>
+                <span className="vt-label">
+                  <span className="vt-dot" aria-hidden="true" />
+                  {p.visitType[lang]}
+                </span>
                 <span className="muted small">{p.specialty[lang]}</span>
               </span>
               <span className="plist-docs mono">{docsFor(p.id).length}</span>
